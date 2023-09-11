@@ -43,7 +43,7 @@ jobs:
         shell: pwsh
 
       - name: 'Run Upload Compliance State'
-        uses: /uploadcompliancestatetask
+        uses: ./uploadcompliancestatetask
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           cydigConfigPath: ${{ github.workspace }}/cydigConfig.json
