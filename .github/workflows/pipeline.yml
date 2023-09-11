@@ -30,6 +30,16 @@ jobs:
       #    subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       #- name: 'Run Azure CLI commands'
       #  run: az account show
+      - name: Update config.json
+        run: |
+          $configFile = "${{ github.workspace }}/uploadcompliancestatetask/config.json"
+          $content = Get-Content $configFile -Raw
+          $content = $content -replace '###urlupdate###', ${{ variabels.urlupdatecompliancestate }} `
+                              -replace '###urlread###', ${{ variables.urlreadtoreadme }} `
+                              -replace '###urldashboard###', ${{ variables.urldashboard }} `
+                              -replace '###readtoreadmeaccesskey###', ${{ secrets.ReadToReadMeAccessKey }}
+          Set-Content -Path $configFile -Value $content
+        shell: pwsh
       - name: 'Run Upload Compliance State'
         uses: ./uploadcompliancestatetask # Assuming the action.yml is in the "uploadcompliancestatetask" folder
         with:
