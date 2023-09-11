@@ -13,6 +13,19 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup node
         uses: actions/setup-node@v3
+        
+        
+      - name: Update URL variables
+        run: |
+          (Get-Content '${{ github.workspace }}/uploadcompliancestatetask/config.json') | Foreach-Object {
+              $_ -replace '###urlupdate###', '$(vars.urlupdatecompliancestate)' `
+                -replace '###urlread###', '$(vars.urlreadtoreadme)' `
+                -replace '###urldashboard###', '$(vars.urldashboard)' `
+                -replace '###readtoreadmeaccesskey###', '$(secrets.ReadToReadMeAccessKey)' `
+
+              } | Set-Content '${{ github.workspace }}/uploadcompliancestatetask/config.json'
+        shell: pwsh
+
       - name: Install dependencies
         run: npm ci
         working-directory: ${{ github.workspace }}/uploadcompliancestatetask
@@ -31,16 +44,6 @@ jobs:
       #- name: 'Run Azure CLI commands'
       #  run: az account show
 
-      - name: Update URL variables
-        run: |
-          (Get-Content '${{ github.workspace }}/uploadcompliancestatetask/config.json') | Foreach-Object {
-              $_ -replace '###urlupdate###', '$(vars.urlupdatecompliancestate)' `
-                -replace '###urlread###', '$(vars.urlreadtoreadme)' `
-                -replace '###urldashboard###', '$(vars.urldashboard)' `
-                -replace '###readtoreadmeaccesskey###', '$(secrets.ReadToReadMeAccessKey)' `
-
-              } | Set-Content '${{ github.workspace }}/uploadcompliancestatetask/config.json'
-        shell: pwsh
 
       - name: 'Run Upload Compliance State'
         uses: ./uploadcompliancestatetask
