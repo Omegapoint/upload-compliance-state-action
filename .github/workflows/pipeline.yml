@@ -31,7 +31,7 @@ jobs:
       #- name: 'Run Azure CLI commands'
       #  run: az account show
 
-      - name: Update config.json
+      - name: Update URL variables
         run: |
           (Get-Content '${{ github.workspace }}/uploadcompliancestatetask/config.json') | Foreach-Object {
               $_ -replace '###urlupdate###', '$(vars.urlupdatecompliancestate)' `
@@ -43,7 +43,7 @@ jobs:
         shell: pwsh
 
       - name: 'Run Upload Compliance State'
-        uses: ./uploadcompliancestatetask # Assuming the action.yml is in the "uploadcompliancestatetask" folder
+        uses: ./
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           cydigConfigPath: ${{ github.workspace }}/uploadcompliancestatetask/cydigConfig.json
