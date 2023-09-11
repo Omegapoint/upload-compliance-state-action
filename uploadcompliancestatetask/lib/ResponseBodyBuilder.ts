@@ -90,12 +90,7 @@ export class ResponseBodyBuilder {
       this.responseBody.scaTool = scaTool;
       return this;
     } else {
-      if (
-        !scaNumberOfSeverity1 &&
-        !scaNumberOfSeverity2 &&
-        !scaNumberOfSeverity3 &&
-        !scaNumberOfSeverity4
-      ) {
+      if (!scaNumberOfSeverity1 && !scaNumberOfSeverity2 && !scaNumberOfSeverity3 && !scaNumberOfSeverity4) {
         this.responseBody.scaTool = scaTool;
         this.responseBody.scaNumberOfSeverity1 = scaNumberOfSeverity1;
         this.responseBody.scaNumberOfSeverity2 = scaNumberOfSeverity2;
@@ -163,11 +158,7 @@ export class ResponseBodyBuilder {
     numUserInProdSeverity2: string,
     numUserInProdSeverity3: string
   ): this {
-    if (
-      !numUserInProdSeverity1 ||
-      !numUserInProdSeverity2 ||
-      !numUserInProdSeverity3
-    ) {
+    if (!numUserInProdSeverity1 || !numUserInProdSeverity2 || !numUserInProdSeverity3) {
       return this;
     } else {
       this.responseBody.numUserInProdSeverity1 = numUserInProdSeverity1;
@@ -232,11 +223,7 @@ export class ResponseBodyBuilder {
       this.responseBody.sastTool = sastTool;
       return this;
     } else {
-      if (
-        !sastNumberOfSeverity3 &&
-        !sastNumberOfSeverity2 &&
-        !sastNumberOfSeverity1
-      ) {
+      if (!sastNumberOfSeverity3 && !sastNumberOfSeverity2 && !sastNumberOfSeverity1) {
         this.responseBody.sastTool = sastTool;
         this.responseBody.sastNumberOfSeverity3 = sastNumberOfSeverity3;
         this.responseBody.sastNumberOfSeverity2 = sastNumberOfSeverity2;

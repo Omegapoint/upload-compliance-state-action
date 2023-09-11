@@ -14,13 +14,13 @@ jobs:
         uses: actions/setup-node@v3
       - name: Install dependencies
         run: npm ci
-        working-directory: $(System.DefaultWorkingDirectory)/uploadcompliancestatetask
+        working-directory: ${{ github.workspace }}/uploadcompliancestatetask
       - name: Compile to Javascript
         run: npm run build
-        working-directory: $(System.DefaultWorkingDirectory)/uploadcompliancestatetask
+        working-directory: ${{ github.workspace }}/uploadcompliancestatetask
       - name: Run tests
         run: npm run testScript
-        working-directory: $(System.DefaultWorkingDirectory)/uploadcompliancestatetask
+        working-directory: ${{ github.workspace }}/uploadcompliancestatetask
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:

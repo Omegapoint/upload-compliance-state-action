@@ -84,11 +84,7 @@ export class UrlBodyBuilder {
     numUserInProdSeverity2: string,
     numUserInProdSeverity3: string
   ): this {
-    if (
-      !numUserInProdSeverity1 ||
-      !numUserInProdSeverity2 ||
-      !numUserInProdSeverity3
-    ) {
+    if (!numUserInProdSeverity1 || !numUserInProdSeverity2 || !numUserInProdSeverity3) {
       return this;
     } else {
       this.url.usersInProduction = 'usersInProduction';
