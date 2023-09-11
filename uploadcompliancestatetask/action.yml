@@ -19,4 +19,4 @@ inputs:
 
 runs:
   using: node16
-  main: uploadcompliancestatetask/js_out/index.js
+  main: js_out/index.js
