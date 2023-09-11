@@ -17,7 +17,7 @@ jobs:
         
       - name: Update URL variables
         run: |
-          (Get-Content '${{ github.workspace }}/uploadcompliancestatetask/config.json') | Foreach-Object {
+          (Get-Content '${{ github.workspace }}/uploadcompliancestateaction/config.json') | Foreach-Object {
               $_ -replace '###urlupdate###', '${{vars.URLUPDATECOMPLIANCESTATE}}' `
                 -replace '###urlread###', '${{vars.URLREADTOREADME}}' `
                 -replace '###urldashboard###', '${{vars.URLDASHBOARD}}' `
@@ -28,13 +28,13 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ${{ github.workspace }}/uploadcompliancestatetask
+        working-directory: ${{ github.workspace }}/uploadcompliancestateaction
       - name: Compile to Javascript
         run: npm run build
-        working-directory: ${{ github.workspace }}/uploadcompliancestatetask
+        working-directory: ${{ github.workspace }}/uploadcompliancestateaction
       - name: Run tests
         run: npm run testScript
-        working-directory: ${{ github.workspace }}/uploadcompliancestatetask
+        working-directory: ${{ github.workspace }}/uploadcompliancestateaction
       #- name: 'Az CLI login'
       #  uses: azure/login@v1
       #  with:
@@ -46,7 +46,7 @@ jobs:
 
 
       - name: 'Run Upload Compliance State'
-        uses: ./uploadcompliancestatetask
+        uses: ./uploadcompliancestateaction
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           cydigConfigPath: ${{ github.workspace }}/cydigConfig.json
