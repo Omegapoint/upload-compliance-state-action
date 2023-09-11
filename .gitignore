@@ -46,3 +46,8 @@ js_out
 # ignore yarn.lock
 yarn.lock
 *.vsix
+
+# Others
+node_modules
+dist
+ResultsFile.xml
