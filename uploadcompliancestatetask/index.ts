@@ -8,15 +8,17 @@ async function runUpdateComplianceStateTask(): Promise<void> {
   try {
     //Fix these
     const codeRepositoryName: string = core.getInput('github.repository').split('/')[1];
-    console.log('codeRepositoryName: ' + codeRepositoryName);
+    console.log('DEBUG: codeRepositoryName: ' + codeRepositoryName);
     const repositoryId: string = core.getInput('github.repository_id');
-    console.log('repositoryId: ' + repositoryId);
+    console.log('DEBUG: repositoryId: ' + repositoryId);
     const subscriptionId: string = core.getInput('subscriptionId');
-    console.log('subscriptionId: true');
+    console.log('DEBUG: subscriptionId: true');
 
     const cydigConfigPath: string = core.getInput('cydigConfigPath'); //Need both string?
     const cydigConfig: CyDigConfig = getContentOfFile(cydigConfigPath);
+    console.log('DEBUG: cydigConfig: ' + cydigConfig);
     const teamName: string = cydigConfig.teamName;
+    console.log('DEBUG: teamName: ' + teamName);
 
     if (!teamName) {
       throw new Error('You need to enter a team name as a input parameter or in your cydig config file');
