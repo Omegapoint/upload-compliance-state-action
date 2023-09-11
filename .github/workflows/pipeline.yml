@@ -5,10 +5,10 @@ permissions:
   pages: write
   id-token: write
 env:
-  configFile: '${{ github.workspace }}/uploadcompliancestateaction/config.json'
+  configFile: '${{ github.workspace }}/cydigConfig.json'
   disableWarningUsersInProd: false
-  threatModelingDate: ''
-  threatModelingTag: ''
+  threatModelingDate: 'casd'
+  threatModelingTag: 'dsad'
   pentestDate: ''
   pentestTag: ''
   scaTool: ''
