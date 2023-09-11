@@ -23,7 +23,7 @@ jobs:
                 -replace '###urldashboard###', '${{vars.URLDASHBOARD}}' `
                 -replace '###readtoreadmeaccesskey###', '${{secrets.READTOREADMEACCESSKEY}}' `
 
-              } | Set-Content '${{ github.workspace }}/uploadcompliancestatetask/config.json'
+              } | Set-Content '${{ github.workspace }}/uploadcompliancestateaction/config.json'
         shell: pwsh
 
       - name: Install dependencies
