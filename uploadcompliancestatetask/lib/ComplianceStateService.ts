@@ -11,7 +11,6 @@ export class ComplianceStateService {
     subscriptionId: string
   ): Promise<void> {
     // POST-request to Azure function
-    //Fix input
     const urlUpdate: string = config.urlUpdate;
     const bodyBuilder: BodyBuilder = new BodyBuilder();
     const responseBody: ResponseBody = bodyBuilder.createBody(

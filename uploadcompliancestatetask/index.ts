@@ -8,8 +8,11 @@ async function runUpdateComplianceStateTask(): Promise<void> {
   try {
     //Fix these
     const codeRepositoryName: string = core.getInput('github.repository').split('/')[1];
+    console.log("codeRepositoryName: " + codeRepositoryName)
     const repositoryId: string = core.getInput('github.repository_id');
+    console.log("repositoryId: " + repositoryId)
     const subscriptionId: string = core.getInput('subscriptionId');
+    console.log("subscriptionId: true")
 
     const cydigConfigPath: string = core.getInput('cydigConfigPath'); //Need both string?
     const cydigConfig: CyDigConfig = getContentOfFile(cydigConfigPath);
