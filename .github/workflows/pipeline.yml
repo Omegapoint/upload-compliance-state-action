@@ -34,9 +34,9 @@ jobs:
         run: |
           $configFile = "${{ github.workspace }}/uploadcompliancestatetask/config.json"
           $content = Get-Content $configFile -Raw
-          $content = $content -replace '###urlupdate###', ${{ variabels.urlupdatecompliancestate }} `
-                              -replace '###urlread###', ${{ variables.urlreadtoreadme }} `
-                              -replace '###urldashboard###', ${{ variables.urldashboard }} `
+          $content = $content -replace '###urlupdate###', ${{ vars.urlupdatecompliancestate }} `
+                              -replace '###urlread###', ${{ vars.urlreadtoreadme }} `
+                              -replace '###urldashboard###', ${{ vars.urldashboard }} `
                               -replace '###readtoreadmeaccesskey###', ${{ secrets.ReadToReadMeAccessKey }}
           Set-Content -Path $configFile -Value $content
         shell: pwsh
