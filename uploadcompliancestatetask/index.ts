@@ -3,11 +3,12 @@ import { ComplianceStateService } from './lib/ComplianceStateService';
 import { getContentOfFile } from './lib/JsonService';
 import { CyDigConfig } from './lib/types/CyDigConfig';
 import * as core from '@actions/core';
+import * as github from '@actions/github';
 
 async function runUpdateComplianceStateTask(): Promise<void> {
   try {
     //Fix these
-    const codeRepositoryName: string = core.getInput('github.repository').split('/')[1];
+    const codeRepositoryName: string = github.context.repo.repo;
     console.log('DEBUG: codeRepositoryName: ' + codeRepositoryName);
     const repositoryId: string = core.getInput('github.repository_id');
     console.log('DEBUG: repositoryId: ' + repositoryId);
