@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        name: Checkout action
       - name: Setup node
         uses: actions/setup-node@v3
       - name: Install dependencies
@@ -30,7 +31,8 @@ jobs:
       #- name: 'Run Azure CLI commands'
       #  run: az account show
       - name: 'Run Upload Compliance State'
-        uses: ./
+        uses: ./uploadcompliancestatetask  # Assuming the action.yml is in the "uploadcompliancestatetask" folder
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          cydigConfigPath: ${{ github.workspace }}/upload-compliance-state-action/cydigConfig.json
+          cydigConfigPath: ${{ github.workspace }}/uploadcompliancestatetask/cydigConfig.json
+
