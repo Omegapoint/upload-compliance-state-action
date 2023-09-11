@@ -32,8 +32,8 @@ export class ComplianceStateService {
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch((error: any) => {
-        console.log(error);
-        // throw new Error(`Request failed with status code: ${error}`);
+        console.log(error.message);
+        throw new Error(`Request failed with status code: ${error.message}`);
         //  ${error.response.data}`);
       });
   }
