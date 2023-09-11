@@ -33,13 +33,13 @@ jobs:
 
       - name: Update config.json
         run: |
-          $configFile = "${{ github.workspace }}/uploadcompliancestatetask/config.json"
-          $content = Get-Content $configFile -Raw
-          $content = $content -replace '###urlupdate###', $urlupdatecompliancestate `
-                              -replace '###urlread###', $urlreadtoreadme `
-                              -replace '###urldashboard###', $urldashboard `
-                              -replace '###readtoreadmeaccesskey###', ${{ secrets.ReadToReadMeAccessKey }}
-          Set-Content -Path $configFile -Value $content
+          (Get-Content '${{ github.workspace }}/uploadcompliancestatetask/config.json') | Foreach-Object {
+              $_ -replace '###urlupdate###', '$(vars.urlupdatecompliancestate)' `
+                -replace '###urlread###', '$(vars.urlreadtoreadme)' `
+                -replace '###urldashboard###', '$(vars.urldashboard)' `
+                -replace '###readtoreadmeaccesskey###', '$(secrets.ReadToReadMeAccessKey)' `
+
+              } | Set-Content '${{ github.workspace }}/uploadcompliancestatetask/config.json'
         shell: pwsh
 
       - name: 'Run Upload Compliance State'
