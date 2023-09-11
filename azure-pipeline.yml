@@ -1,0 +1,155 @@
+trigger:
+  branches:
+    include:
+      - main
+      - feature/*
+  paths:
+    exclude:
+      - README.md
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - README.md
+
+schedules:
+  - cron: '0 2 * * 1-5'
+    displayName: Nightly run 02:00 excluding Sat-Sun (mornings)
+    branches:
+      include:
+        - main
+    always: true
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+resources:
+  repositories:
+    - repository: pipelines
+      type: git
+      name: pipelines
+    - repository: compliance
+      type: git
+      name: compliance
+    - repository: dev-compliance
+      type: git
+      name: dev-compliance
+
+parameters:
+  - name: tasks
+    type: object
+    default:
+      - uploadcompliancestatetask
+
+  - name: taskRepositoryPaths
+    type: object
+    default:
+      - $(Build.Repository.Name)/uploadcompliancestatetask
+
+  - name: runSecurityChecks
+    type: boolean
+    default: false
+  - name: runCyDigProd
+    type: boolean
+    default: true
+  - name: runCyDigDev
+    type: boolean
+    default: true
+
+stages:
+  - stage: Test_tasks
+    displayName: Test and analyze
+    variables:
+      - group: accessToken
+    jobs:
+      - job:
+        steps:
+          - checkout: self
+          - checkout: dev-compliance
+          - checkout: compliance
+          - template: test-tasks.yml@pipelines
+            parameters:
+              tasks: ${{ parameters.taskRepositoryPaths }}
+          - ${{ if or(eq(variables['Build.Reason'], 'Schedule'), eq(parameters.runSecurityChecks, true)) }}:
+              - template: security.yml@pipelines
+              - ${{ if eq(parameters.runCyDigProd, true) }}:
+                  - template: compliance-template.yml@compliance
+                    parameters:
+                      threatModelingDate: '2022-10-14'
+                      scaTool: 'OWASP Dependency Check'
+                      sastTool: Semgrep
+              - ${{ if eq(parameters.runCyDigDev, true) }}:
+                  - template: compliance-template.yml@dev-compliance
+                    parameters:
+                      threatModelingDate: '2022-10-14'
+                      scaTool: 'OWASP Dependency Check'
+                      sastTool: Semgrep
+  - stage: DEV_package_extension_and_publish_build_artifacts
+    displayName: DEV - Package extension and publish build artifacts
+    condition: and(succeeded(), and(eq(${{parameters.runSecurityChecks}}, false), ne(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables['Build.Reason'], 'PullRequest')))
+    variables:
+      - group: upload-task-extension-publish-dev
+      - group: upload-task-deploy-dev
+      - group: key-vault-dev
+    jobs:
+      - job:
+        steps:
+          - pwsh: |
+              (Get-Content '$(System.DefaultWorkingDirectory)/uploadcompliancestatetask/config.json') | Foreach-Object {
+              $_ -replace '###urlupdate###', '$(urlupdatecompliancestate)' `
+                -replace '###urlread###', '$(urlreadtoreadme)' `
+                -replace '###urldashboard###', '$(urldashboard)' `
+                -replace '###readtoreadmeaccesskey###', '$(ReadToReadMeAccessKey)' `
+
+              } | Set-Content '$(System.DefaultWorkingDirectory)/uploadcompliancestatetask/config.json'
+            displayName: 'Set URL to Update Compliance State function'
+          - template: build-tasks.yml@pipelines
+            parameters:
+              tasks: ${{ parameters.tasks }}
+          - template: package-extension.yml@pipelines
+  - stage: DEV_Download_build_artifacts_and_publish_the_extension
+    displayName: DEV - Download build artifact and publish extension
+    condition: and(succeeded(), and(eq(${{parameters.runSecurityChecks}}, false), ne(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables['Build.Reason'], 'PullRequest')))
+    variables:
+      - group: upload-task-extension-publish-dev
+      - group: upload-task-deploy-dev
+    jobs:
+      - job:
+        steps:
+          - template: publish-extension.yml@pipelines
+  - stage: PROD_package_extension_and_publish_build_artifacts
+    displayName: PROD - Package extension and publish build artifacts
+    condition: and(in(dependencies.Test_tasks.result, 'Succeeded'), and(ne(variables['Build.Reason'], 'Schedule'), eq(${{parameters.runSecurityChecks}}, false), eq(variables['Build.SourceBranch'], 'refs/heads/main')))
+    variables:
+      - group: upload-task-extension-publish-prod
+      - group: upload-task-deploy-prod
+      - group: key-vault-prod
+    jobs:
+      - job:
+        steps:
+          - pwsh: |
+              (Get-Content '$(System.DefaultWorkingDirectory)/uploadcompliancestatetask/config.json') | Foreach-Object {
+              $_ -replace '###urlupdate###', '$(urlupdatecompliancestate)' `
+                -replace '###urlread###', '$(urlreadtoreadme)' `
+                -replace '###urldashboard###', '$(urldashboard)' `
+                -replace '###readtoreadmekeyvault###', '$(ReadToReadMeAccessKey)' `
+
+              } | Set-Content '$(System.DefaultWorkingDirectory)/uploadcompliancestatetask/config.json'
+            displayName: 'Set URL to Update Compliance State function'
+          - template: build-tasks.yml@pipelines
+            parameters:
+              tasks: ${{ parameters.tasks }}
+          - template: package-extension.yml@pipelines
+  - stage: PROD_Download_build_artifacts_and_publish_the_extension
+    displayName: PROD - Download build artifact and publish extension
+    condition: and(in(dependencies.PROD_package_extension_and_publish_build_artifacts.result, 'Succeeded'), and(ne(variables['Build.Reason'], 'Schedule'), eq(${{parameters.runSecurityChecks}}, false), eq(variables['Build.SourceBranch'], 'refs/heads/main')))
+    variables:
+      - group: upload-task-extension-publish-prod
+      - group: upload-task-deploy-prod
+    jobs:
+      - job:
+        steps:
+          - template: publish-extension.yml@pipelines
