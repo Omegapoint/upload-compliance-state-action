@@ -13,7 +13,7 @@ export class BodyBuilder {
     const teamProjectName: string = core.getInput('System.TeamProject');
 
     const allowedLocationPolicy: string = core.getInput('allowedLocationPolicy');
-    const secureScore: string = core.getInput('INPUT_secureScore');
+    const secureScore: string = core.getInput('secureScore');
     const numberOfDeployedVMs: string = core.getInput('numberOfDeployedVMs');
 
     const threatModelingDate: string = core.getInput('threatModelingDate');
@@ -49,14 +49,14 @@ export class BodyBuilder {
 
     const ptNumberOfActiveTickets: string = core.getInput('ptNumberOfActiveTickets');
     const ptNumberOfClosedTickets: string = core.getInput('ptNumberOfClosedTickets');
-
+    
     const numUserInProdSeverity1: string = core.getInput('numUserInProdSeverity1');
     const numUserInProdSeverity2: string = core.getInput('numUserInProdSeverity2');
     const numUserInProdSeverity3: string = core.getInput('numUserInProdSeverity3');
     console.log('devopsOrgName:', devopsOrgName);
     console.log('teamProjectName:', teamProjectName);
     console.log('allowedLocationPolicy:', allowedLocationPolicy);
-    console.log('secureScore2:', secureScore);
+    console.log('secureScore:', secureScore);
     console.log('numberOfDeployedVMs:', numberOfDeployedVMs);
     console.log('threatModelingDate:', threatModelingDate);
     console.log('scaTool:', scaTool);
