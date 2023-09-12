@@ -22,7 +22,7 @@ env:
   sonarQubeValues.sonarQubeProjectKey: ''
   sonarQubeValues.sonarQubeUserKey: ''
   sonarQubeValues.sonarQubeDomain: ''
-  
+
 on: [push]
 jobs:
   build:
@@ -81,7 +81,6 @@ jobs:
       #    subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       #- name: 'Run Azure CLI commands'
       #  run: az account show
-
 
       - name: 'Run Upload Compliance State'
         uses: ./uploadcompliancestateaction

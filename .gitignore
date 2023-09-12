@@ -40,9 +40,6 @@ bower_components
 .DS_Store
 Thumbs.db
 
-# Ignore built ts files
-js_out
-
 # ignore yarn.lock
 yarn.lock
 *.vsix
@@ -51,3 +48,5 @@ yarn.lock
 node_modules
 dist
 ResultsFile.xml
+# Ignore built ts files
+#js_out
