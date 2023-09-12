@@ -11,7 +11,7 @@ export class BodyBuilder {
   createBody(teamName: string, repositoryId: string, codeRepositoryName: string, subscriptionId: string): ResponseBody {
     let devopsOrgName: string = core.getInput('System.TeamFoundationCollectionUri');
     const teamProjectName: string = core.getInput('System.TeamProject');
-
+console.log("LOGGING ENV VARIABLE SECURESCORE", process.env.secureScore);
     const allowedLocationPolicy: string = core.getInput('allowedLocationPolicy');
     const secureScore: string = core.getInput('secureScore');
     const numberOfDeployedVMs: string = core.getInput('numberOfDeployedVMs');
