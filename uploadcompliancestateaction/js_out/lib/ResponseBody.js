@@ -1,5 +1,6 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResponseBody = void 0;
-class ResponseBody {}
+class ResponseBody {
+}
 exports.ResponseBody = ResponseBody;
