@@ -56,7 +56,7 @@ export class BodyBuilder {
     console.log('devopsOrgName:', devopsOrgName);
     console.log('teamProjectName:', teamProjectName);
     console.log('allowedLocationPolicy:', allowedLocationPolicy);
-    console.log('secureScore:', secureScore);
+    console.log('secureScore2:', secureScore);
     console.log('numberOfDeployedVMs:', numberOfDeployedVMs);
     console.log('threatModelingDate:', threatModelingDate);
     console.log('scaTool:', scaTool);
