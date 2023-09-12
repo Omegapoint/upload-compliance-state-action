@@ -163,6 +163,9 @@ export class BodyBuilder {
       urlBody
     );
 
+    console.log(
+      'Checking: compliantResources + nonCompliantResources' + compliantResources + '+' + nonCompliantResources
+    );
     const responseBody: ResponseBody = new ResponseBodyBuilder()
       .setTeamName(teamName)
       .setTeamProjectName(teamProjectName)

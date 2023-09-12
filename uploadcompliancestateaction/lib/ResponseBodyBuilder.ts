@@ -117,10 +117,16 @@ export class ResponseBodyBuilder {
     compliantResources: string,
     nonCompliantResources: string
   ): this {
+    console.log(
+      '(responsebodeybuilder) Checking: compliantResources + nonCompliantResources' +
+        compliantResources +
+        '+' +
+        nonCompliantResources
+    );
     if (!allowedLocationPolicy) {
       return this;
     } else {
-      if (!compliantResources && !nonCompliantResources) {
+      if (compliantResources !== undefined && nonCompliantResources !== undefined) {
         this.responseBody.allowedLocationPolicy = allowedLocationPolicy;
         this.responseBody.compliantResources = compliantResources;
         this.responseBody.nonCompliantResources = nonCompliantResources;
