@@ -4,24 +4,25 @@ permissions:
   contents: read
   pages: write
   id-token: write
-env:
-  configFile: '${{ github.workspace }}/cydigConfig.json'
-  disableWarningUsersInProd: false
-  threatModelingDate: 'casd'
-  threatModelingTag: 'dsad'
-  pentestDate: ''
-  pentestTag: ''
-  scaTool: ''
-  sastTool: ''
-  codeQualityTool: ''
-  nameOfBoard: ''
-  mendValues.mendUserKey: ''
-  mendValues.mendProjectName: ''
-  mendValues.mendProductToken: ''
-  mendValues.mendDomain: ''
-  sonarQubeValues.sonarQubeProjectKey: ''
-  sonarQubeValues.sonarQubeUserKey: ''
-  sonarQubeValues.sonarQubeDomain: ''
+
+#env:
+#    configFile: '${{ github.workspace }}/cydigConfig.json'
+#    disableWarningUsersInProd: false
+#    threatModelingDate: 'casd'
+#    threatModelingTag: 'dsad'
+#    pentestDate: ''
+#    pentestTag: ''
+#    scaTool: ''
+#    sastTool: ''
+#    codeQualityTool: ''
+#    nameOfBoard: ''
+#    mendValues.mendUserKey: ''
+#    mendValues.mendProjectName: ''
+#    mendValues.mendProductToken: ''
+#    mendValues.mendDomain: ''
+#    sonarQubeValues.sonarQubeProjectKey: ''
+#    sonarQubeValues.sonarQubeUserKey: ''
+#    sonarQubeValues.sonarQubeDomain: ''
 
 on: [push]
 jobs:
@@ -32,26 +33,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup node
         uses: actions/setup-node@v3
-
-      - name: Set Environment Variables
-        run: |
-          echo "configFile=${{ env.configFile }}" >> $GITHUB_ENV
-          echo "disableWarningUsersInProd=${{ env.disableWarningUsersInProd }}" >> $GITHUB_ENV
-          echo "threatModelingDate=${{ env.threatModelingDate }}" >> $GITHUB_ENV
-          echo "threatModelingTag=${{ env.threatModelingTag }}" >> $GITHUB_ENV
-          echo "pentestDate=${{ env.pentestDate }}" >> $GITHUB_ENV
-          echo "pentestTag=${{ env.pentestTag }}" >> $GITHUB_ENV
-          echo "scaTool=${{ env.scaTool }}" >> $GITHUB_ENV
-          echo "sastTool=${{ env.sastTool }}" >> $GITHUB_ENV
-          echo "codeQualityTool=${{ env.codeQualityTool }}" >> $GITHUB_ENV
-          echo "nameOfBoard=${{ env.nameOfBoard }}" >> $GITHUB_ENV
-          echo "mendValues.mendUserKey=${{ env.mendValues.mendUserKey }}" >> $GITHUB_ENV
-          echo "mendValues.mendProjectName=${{ env.mendValues.mendProjectName }}" >> $GITHUB_ENV
-          echo "mendValues.mendProductToken=${{ env.mendValues.mendProductToken }}" >> $GITHUB_ENV
-          echo "mendValues.mendDomain=${{ env.mendValues.mendDomain }}" >> $GITHUB_ENV
-          echo "sonarQubeValues.sonarQubeProjectKey=${{ env.sonarQubeValues.sonarQubeProjectKey }}" >> $GITHUB_ENV
-          echo "sonarQubeValues.sonarQubeUserKey=${{ env.sonarQubeValues.sonarQubeUserKey }}" >> $GITHUB_ENV
-          echo "sonarQubeValues.sonarQubeDomain=${{ env.sonarQubeValues.sonarQubeDomain }}" >> $GITHUB_ENV
 
       - name: Update URL variables
         run: |
@@ -73,6 +54,27 @@ jobs:
       - name: Run tests
         run: npm run testScript
         working-directory: ${{ github.workspace }}/uploadcompliancestateaction
+
+      #- name: Set Environment Variables
+      #  run: |
+      #    echo "configFile=${{ env.configFile }}" >> $GITHUB_ENV
+      #    echo "disableWarningUsersInProd=${{ env.disableWarningUsersInProd }}" >> $GITHUB_ENV
+      #    echo "threatModelingDate=${{ env.threatModelingDate }}" >> $GITHUB_ENV
+      #    echo "threatModelingTag=${{ env.threatModelingTag }}" >> $GITHUB_ENV
+      #    echo "pentestDate=${{ env.pentestDate }}" >> $GITHUB_ENV
+      #    echo "pentestTag=${{ env.pentestTag }}" >> $GITHUB_ENV
+      #    echo "scaTool=${{ env.scaTool }}" >> $GITHUB_ENV
+      #    echo "sastTool=${{ env.sastTool }}" >> $GITHUB_ENV
+      #    echo "codeQualityTool=${{ env.codeQualityTool }}" >> $GITHUB_ENV
+      #    echo "nameOfBoard=${{ env.nameOfBoard }}" >> $GITHUB_ENV
+      #    echo "mendValues.mendUserKey=${{ env.mendValues.mendUserKey }}" >> $GITHUB_ENV
+      #    echo "mendValues.mendProjectName=${{ env.mendValues.mendProjectName }}" >> $GITHUB_ENV
+      #    echo "mendValues.mendProductToken=${{ env.mendValues.mendProductToken }}" >> $GITHUB_ENV
+      #    echo "mendValues.mendDomain=${{ env.mendValues.mendDomain }}" >> $GITHUB_ENV
+      #    echo "sonarQubeValues.sonarQubeProjectKey=${{ env.sonarQubeValues.sonarQubeProjectKey }}" >> $GITHUB_ENV
+      #    echo "sonarQubeValues.sonarQubeUserKey=${{ env.sonarQubeValues.sonarQubeUserKey }}" >> $GITHUB_ENV
+      #    echo "sonarQubeValues.sonarQubeDomain=${{ env.sonarQubeValues.sonarQubeDomain }}" >> $GITHUB_ENV
+
       #- name: 'Az CLI login'
       #  uses: azure/login@v1
       #  with:

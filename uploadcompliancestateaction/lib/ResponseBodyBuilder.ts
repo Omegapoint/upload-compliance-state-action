@@ -17,7 +17,7 @@ export class ResponseBodyBuilder {
   }
 
   setTeamProjectName(teamProjectName: string): this {
-    if (!teamProjectName) {
+    if (!teamProjectName === undefined) {
       return this;
     } else {
       this.responseBody.teamProjectName = teamProjectName;
