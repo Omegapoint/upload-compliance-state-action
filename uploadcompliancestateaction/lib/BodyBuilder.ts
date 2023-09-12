@@ -26,8 +26,10 @@ export class BodyBuilder {
     const branchPolicyUpdateDate: string = process.env.branchPolicyUpdateDate || '';
     const branchPolicyUpdateEmail: string = process.env.branchPolicyUpdateEmail || '';
 
-    const compliantResources: string = process.env.compliantResources || '';
-    const nonCompliantResources: string = process.env.nonCompliantResources || '';
+    //const compliantResources: string = process.env.compliantResources || '';
+    //const nonCompliantResources: string = process.env.nonCompliantResources || '';
+    const compliantResources: string = '501';
+    const nonCompliantResources: string = '30';
 
     const scaNumberOfSeverity1: string = process.env.SCAnumberOfSeverity1 || '';
     const scaNumberOfSeverity2: string = process.env.SCAnumberOfSeverity2 || '';
