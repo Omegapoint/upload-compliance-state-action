@@ -10,48 +10,49 @@ let urls: string = '';
 export class BodyBuilder {
   createBody(teamName: string, repositoryId: string, codeRepositoryName: string, subscriptionId: string): ResponseBody {
     let devopsOrgName: string = process.env.System_TeamFoundationCollectionUri || '';
-const teamProjectName: string = process.env.System_TeamProject || '';
-const allowedLocationPolicy: string = process.env.allowedLocationPolicy || '';
-const secureScore: string = process.env.secureScore || '';
-const numberOfDeployedVMs: string = process.env.numberOfDeployedVMs || '';
+    //const teamProjectName: string = process.env.System_TeamProject || '';
+    const teamProjectName: string = teamName || '';
+    const allowedLocationPolicy: string = process.env.allowedLocationPolicy || '';
+    const secureScore: string = process.env.secureScore || '';
+    const numberOfDeployedVMs: string = process.env.numberOfDeployedVMs || '';
 
-const threatModelingDate: string = process.env.threatModelingDate || '';
-const scaTool: string = process.env.scaTool || '';
-const sastTool: string = process.env.sastTool || '';
-const pentestDate: string = process.env.pentestDate || '';
-const codeQualityTool: string = process.env.codeQualityTool || '';
-const numberOfExposedSecrets: string = process.env.numberOfExposedSecrets || '';
-const numberOfReviewers: string = process.env.numberOfReviewers || '';
-const branchPolicyUpdateDate: string = process.env.branchPolicyUpdateDate || '';
-const branchPolicyUpdateEmail: string = process.env.branchPolicyUpdateEmail || '';
+    const threatModelingDate: string = process.env.threatModelingDate || '';
+    const scaTool: string = process.env.scaTool || '';
+    const sastTool: string = process.env.sastTool || '';
+    const pentestDate: string = process.env.pentestDate || '';
+    const codeQualityTool: string = process.env.codeQualityTool || '';
+    const numberOfExposedSecrets: string = process.env.numberOfExposedSecrets || '';
+    const numberOfReviewers: string = process.env.numberOfReviewers || '';
+    const branchPolicyUpdateDate: string = process.env.branchPolicyUpdateDate || '';
+    const branchPolicyUpdateEmail: string = process.env.branchPolicyUpdateEmail || '';
 
-const compliantResources: string = process.env.compliantResources || '';
-const nonCompliantResources: string = process.env.nonCompliantResources || '';
+    const compliantResources: string = process.env.compliantResources || '';
+    const nonCompliantResources: string = process.env.nonCompliantResources || '';
 
-const scaNumberOfSeverity1: string = process.env.SCAnumberOfSeverity1 || '';
-const scaNumberOfSeverity2: string = process.env.SCAnumberOfSeverity2 || '';
-const scaNumberOfSeverity3: string = process.env.SCAnumberOfSeverity3 || '';
-const scaNumberOfSeverity4: string = process.env.SCAnumberOfSeverity4 || '';
+    const scaNumberOfSeverity1: string = process.env.SCAnumberOfSeverity1 || '';
+    const scaNumberOfSeverity2: string = process.env.SCAnumberOfSeverity2 || '';
+    const scaNumberOfSeverity3: string = process.env.SCAnumberOfSeverity3 || '';
+    const scaNumberOfSeverity4: string = process.env.SCAnumberOfSeverity4 || '';
 
-const cqNumberOfSeverity1: string = process.env.CQnumberOfSeverity1 || '';
-const cqNumberOfSeverity2: string = process.env.CQnumberOfSeverity2 || '';
-const cqNumberOfSeverity3: string = process.env.CQnumberOfSeverity3 || '';
-const cqNumberOfSeverity4: string = process.env.CQnumberOfSeverity4 || '';
-const cqNumberOfSeverity5: string = process.env.CQnumberOfSeverity5 || '';
+    const cqNumberOfSeverity1: string = process.env.CQnumberOfSeverity1 || '';
+    const cqNumberOfSeverity2: string = process.env.CQnumberOfSeverity2 || '';
+    const cqNumberOfSeverity3: string = process.env.CQnumberOfSeverity3 || '';
+    const cqNumberOfSeverity4: string = process.env.CQnumberOfSeverity4 || '';
+    const cqNumberOfSeverity5: string = process.env.CQnumberOfSeverity5 || '';
 
-const sastNumberOfSeverity1: string = process.env.SASTnumberOfSeverity1 || '';
-const sastNumberOfSeverity2: string = process.env.SASTnumberOfSeverity2 || '';
-const sastNumberOfSeverity3: string = process.env.SASTnumberOfSeverity3 || '';
+    const sastNumberOfSeverity1: string = process.env.SASTnumberOfSeverity1 || '';
+    const sastNumberOfSeverity2: string = process.env.SASTnumberOfSeverity2 || '';
+    const sastNumberOfSeverity3: string = process.env.SASTnumberOfSeverity3 || '';
 
-const tmNumberOfActiveTickets: string = process.env.tmNumberOfActiveTickets || '';
-const tmNumberOfClosedTickets: string = process.env.tmNumberOfClosedTickets || '';
+    const tmNumberOfActiveTickets: string = process.env.tmNumberOfActiveTickets || '';
+    const tmNumberOfClosedTickets: string = process.env.tmNumberOfClosedTickets || '';
 
-const ptNumberOfActiveTickets: string = process.env.ptNumberOfActiveTickets || '';
-const ptNumberOfClosedTickets: string = process.env.ptNumberOfClosedTickets || '';
+    const ptNumberOfActiveTickets: string = process.env.ptNumberOfActiveTickets || '';
+    const ptNumberOfClosedTickets: string = process.env.ptNumberOfClosedTickets || '';
 
-const numUserInProdSeverity1: string = process.env.numUserInProdSeverity1 || '';
-const numUserInProdSeverity2: string = process.env.numUserInProdSeverity2 || '';
-const numUserInProdSeverity3: string = process.env.numUserInProdSeverity3 || '';
+    const numUserInProdSeverity1: string = process.env.numUserInProdSeverity1 || '';
+    const numUserInProdSeverity2: string = process.env.numUserInProdSeverity2 || '';
+    const numUserInProdSeverity3: string = process.env.numUserInProdSeverity3 || '';
 
     // let devopsOrgName: string = core.getInput('System.TeamFoundationCollectionUri');
     // const teamProjectName: string = core.getInput('System.TeamProject');
@@ -92,7 +93,7 @@ const numUserInProdSeverity3: string = process.env.numUserInProdSeverity3 || '';
 
     // const ptNumberOfActiveTickets: string = core.getInput('ptNumberOfActiveTickets');
     // const ptNumberOfClosedTickets: string = core.getInput('ptNumberOfClosedTickets');
-    
+
     // const numUserInProdSeverity1: string = core.getInput('numUserInProdSeverity1');
     // const numUserInProdSeverity2: string = core.getInput('numUserInProdSeverity2');
     // const numUserInProdSeverity3: string = core.getInput('numUserInProdSeverity3');
@@ -131,7 +132,6 @@ const numUserInProdSeverity3: string = process.env.numUserInProdSeverity3 || '';
     console.log('numUserInProdSeverity1:', process.env.numUserInProdSeverity1);
     console.log('numUserInProdSeverity2:', process.env.numUserInProdSeverity2);
     console.log('numUserInProdSeverity3:', process.env.numUserInProdSeverity3);
-
 
     devopsOrgName = this.splitUrl(devopsOrgName);
 
