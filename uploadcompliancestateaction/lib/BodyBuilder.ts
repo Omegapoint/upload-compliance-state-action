@@ -11,7 +11,8 @@ export class BodyBuilder {
   createBody(teamName: string, repositoryId: string, codeRepositoryName: string, subscriptionId: string): ResponseBody {
     let devopsOrgName: string = process.env.System_TeamFoundationCollectionUri || '';
     //TODO: teamProjectName will be null.
-    const teamProjectName: string = process.env.System_TeamProject || '';
+    //const teamProjectName: string = process.env.System_TeamProject || '';
+    const teamProjectName: string = process.env.System_TeamProject || teamName;
     const allowedLocationPolicy: string = process.env.allowedLocationPolicy || '';
     const secureScore: string = process.env.secureScore || '';
     const numberOfDeployedVMs: string = process.env.numberOfDeployedVMs || '';
