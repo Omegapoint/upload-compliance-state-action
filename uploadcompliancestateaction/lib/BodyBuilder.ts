@@ -13,7 +13,7 @@ export class BodyBuilder {
     const teamProjectName: string = core.getInput('System.TeamProject');
 
     const allowedLocationPolicy: string = core.getInput('allowedLocationPolicy');
-    const secureScore: string = core.getInput('secureScore');
+    const secureScore: string = core.getInput('INPUT_secureScore');
     const numberOfDeployedVMs: string = core.getInput('numberOfDeployedVMs');
 
     const threatModelingDate: string = core.getInput('threatModelingDate');
