@@ -10,8 +10,8 @@ let urls: string = '';
 export class BodyBuilder {
   createBody(teamName: string, repositoryId: string, codeRepositoryName: string, subscriptionId: string): ResponseBody {
     let devopsOrgName: string = process.env.System_TeamFoundationCollectionUri || '';
-    //const teamProjectName: string = process.env.System_TeamProject || '';
-    const teamProjectName: string = teamName || '';
+    //TODO: teamProjectName will be null.
+    const teamProjectName: string = process.env.System_TeamProject || '';
     const allowedLocationPolicy: string = process.env.allowedLocationPolicy || '';
     const secureScore: string = process.env.secureScore || '';
     const numberOfDeployedVMs: string = process.env.numberOfDeployedVMs || '';
@@ -26,10 +26,8 @@ export class BodyBuilder {
     const branchPolicyUpdateDate: string = process.env.branchPolicyUpdateDate || '';
     const branchPolicyUpdateEmail: string = process.env.branchPolicyUpdateEmail || '';
 
-    //const compliantResources: string = process.env.compliantResources || '';
-    //const nonCompliantResources: string = process.env.nonCompliantResources || '';
-    const compliantResources: string = '501';
-    const nonCompliantResources: string = '30';
+    const compliantResources: string = process.env.compliantResources || '';
+    const nonCompliantResources: string = process.env.nonCompliantResources || '';
 
     const scaNumberOfSeverity1: string = process.env.SCAnumberOfSeverity1 || '';
     const scaNumberOfSeverity2: string = process.env.SCAnumberOfSeverity2 || '';
