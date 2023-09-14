@@ -48,4 +48,3 @@ yarn.lock
 node_modules
 ResultsFile.xml
 # Ignore built ts files
-# js_out
