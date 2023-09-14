@@ -36,6 +36,3 @@ The ResponseBody class holds all the badges/controls that will be uploaded to th
 2. Implement a method in the ResponseBodyBuilder to add the value to the ResponseBody.
 3. Add your newly created method to the method chain in the BodyBuilder under ResponseBodyBuilder.
 
-### Deploying a new extension
-
-Read more [here](https://dev.azure.com/CyDig/CyDig/_git/cydig-tasks?path=/new-extension.md) - should not be done often.
