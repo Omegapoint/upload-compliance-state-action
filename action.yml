@@ -1,12 +1,8 @@
 name: 'cydig/uploadcompliancestateaction@v1'
-description: 'Provide a description here'
+description: 'Cydig upload action'
 author: 'Omgeapoint'
 
 inputs:
-  # repo-token:
-  #   description: 'SubscriptionId to use for the connections in the custom task.'
-  #   required: true
-  #   default: 'Not working'
   cydigConfigPath:
     description: 'The path to the json-file containing configuration for CyDig'
     required: true
@@ -19,4 +15,4 @@ inputs:
 
 runs:
   using: node16
-  main: js_out/index.js
+  main: dist/index.js
