@@ -69,7 +69,7 @@ jobs:
           automatic_release_tag: "latest"
           prerelease: false
           title: "Development Build"
-          files: dist
+          files: /dist
             
         #- name: Set Environment Variables
       #  run: |
