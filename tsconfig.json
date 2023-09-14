@@ -3,7 +3,7 @@
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": "./uploadcompliancestateaction",
+    "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
     // "forceConsistentCasingInFileNames": true,
