@@ -50,7 +50,7 @@ function validateConfig(config) {
             date: joi_1.default.string(),
             boardsTag: joi_1.default.string(),
         }),
-        azureDevOps: joi_1.default.object({
+        github: joi_1.default.object({
             usingRepos: joi_1.default.boolean(),
             repos: joi_1.default.object({
                 username: joi_1.default.string(),
