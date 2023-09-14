@@ -28,7 +28,7 @@ export function validateConfig(config: unknown): void {
       date: Joi.string(),
       boardsTag: Joi.string(),
     }),
-    azureDevOps: Joi.object({
+    github: Joi.object({
       usingRepos: Joi.boolean(),
       repos: Joi.object({
         username: Joi.string(),
