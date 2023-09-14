@@ -25,6 +25,7 @@
     "prettier": "^3.0.3"
   },
   "devDependencies": {
+    "@types/node": "^20.6.0",
     "mocha": "^10.2.0"
   }
 }

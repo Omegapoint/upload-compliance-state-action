@@ -8,7 +8,7 @@ export class ComplianceStateService {
     teamName: string,
     repositoryId: string,
     codeRepositoryName: string,
-    subscriptionId: string
+    subscriptionId: string,
   ): Promise<void> {
     // POST-request to Azure function
     const urlUpdate: string = config.urlUpdate;
@@ -17,7 +17,7 @@ export class ComplianceStateService {
       teamName,
       repositoryId,
       codeRepositoryName,
-      subscriptionId
+      subscriptionId,
     );
 
     await axios
