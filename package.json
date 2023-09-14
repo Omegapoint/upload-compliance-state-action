@@ -5,9 +5,9 @@
   "main": "js_out/index.js",
   "scripts": {
     "build": "cd src && tsc",
-    "start": "npm run build && node js_out/index.js",
-    "test": "npm run build && mocha js_out/test/",
-    "testScript": "npm run build && mocha js_out/test/ --reporter xunit --reporter-option output=ResultsFile.xml"
+    "start": "npm run build && node dist/index.js",
+    "test": "npm run build && mocha dist/test/",
+    "testScript": "npm run build && mocha dist/test/ --reporter xunit --reporter-option output=ResultsFile.xml"
   },
   "keywords": [],
   "author": "",
