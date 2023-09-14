@@ -57,19 +57,20 @@ jobs:
           if [[ -n $(git status --porcelain dist) ]]; then
             echo "Code changes detected. Proceeding with commit and push."
             git add dist
+            git config --global user.name ${{ github.actor }}
             git commit -m "Automated Build"
             git push
           else
             echo "No code changes detected for dist folder. Skipping commit and push."
           fi
 
-      - uses: 'marvinpinto/action-automatic-releases@latest'
-        with:
-          repo_token: '${{ secrets.GITHUB_TOKEN }}'
-          automatic_release_tag: 'latest'
-          prerelease: false
-          title: 'Development Build'
-          files: /dist
+      # - uses: 'marvinpinto/action-automatic-releases@latest'
+      #   with:
+      #     repo_token: '${{ secrets.GITHUB_TOKEN }}'
+      #     automatic_release_tag: 'latest'
+      #     prerelease: false
+      #     title: 'Development Build'
+      #     files: /dist
 
         #- name: Set Environment Variables
       #  run: |
