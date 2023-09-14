@@ -63,7 +63,15 @@ jobs:
             echo "No code changes detected for dist folder. Skipping commit and push."
           fi
 
-      #- name: Set Environment Variables
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "v1"
+          prerelease: true
+          title: "Development Build"
+          files: dist
+            
+        #- name: Set Environment Variables
       #  run: |
       #    echo "configFile=${{ env.configFile }}" >> $GITHUB_ENV
       #    echo "disableWarningUsersInProd=${{ env.disableWarningUsersInProd }}" >> $GITHUB_ENV
