@@ -9,7 +9,7 @@ export type CyDigConfig = {
     date: string;
     boardsTag: string;
   };
-  azureDevOps: {
+  github: {
     usingRepos: boolean;
     repos: {
       username: string;
