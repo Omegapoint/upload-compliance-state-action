@@ -46,7 +46,6 @@ yarn.lock
 
 # Others
 node_modules
-dist
 ResultsFile.xml
 # Ignore built ts files
 #js_out

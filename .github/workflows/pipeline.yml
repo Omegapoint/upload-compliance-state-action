@@ -1,7 +1,7 @@
-name: Build and Authenticate
+name: Test and Build
 run-name: ${{ github.actor }} is testing out github actions
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -42,18 +42,21 @@ jobs:
                 -replace '###urldashboard###', '${{vars.URLDASHBOARD}}' `
                 -replace '###readtoreadmeaccesskey###', '${{secrets.READTOREADMEACCESSKEY}}' `
 
-              } | Set-Content '${{ github.workspace }}/uploadcompliancestateaction/config.json'
+              } | Set-Content '${{ github.workspace }}/config.json'
         shell: pwsh
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ${{ github.workspace }}/uploadcompliancestateaction
       - name: Compile to Javascript
         run: npm run build
-        working-directory: ${{ github.workspace }}/uploadcompliancestateaction
       - name: Run tests
         run: npm run testScript
-        working-directory: ${{ github.workspace }}/uploadcompliancestateaction
+      - name: Commit and push build to repo
+        run: |
+          git add dist
+          git config --global user.name ${{ github.actor }}
+          git commit -m "Automated Build"
+          git push
 
       #- name: Set Environment Variables
       #  run: |
@@ -84,8 +87,8 @@ jobs:
       #- name: 'Run Azure CLI commands'
       #  run: az account show
 
-      - name: 'Run Upload Compliance State'
-        uses: ./uploadcompliancestateaction
-        with:
-          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          cydigConfigPath: ${{ github.workspace }}/cydigConfig.json
+      # - name: 'Run Upload Compliance State'
+      #   uses: ./uploadcompliancestateaction
+      #   with:
+      #     subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      #     cydigConfigPath: ${{ github.workspace }}/cydigConfig.json
