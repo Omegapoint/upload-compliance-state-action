@@ -28,7 +28,6 @@ async function runUpdateComplianceStateTask(): Promise<void> {
       );
     }
 
-    // const credentials: DefaultAzureCredential = new DefaultAzureCredential();
     const complianceStateService: ComplianceStateService = new ComplianceStateService();
     await complianceStateService.createAndSendComplianceState(
       teamName,
