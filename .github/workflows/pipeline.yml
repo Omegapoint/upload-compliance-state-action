@@ -51,12 +51,17 @@ jobs:
         run: npm run build
       - name: Run tests
         run: npm run testScript
-      - name: Commit and push build to repo
-        run: |
-          git add dist
-          git config --global user.name ${{ github.actor }}
-          git commit -m "Automated Build"
-          git push
+      - name: Check for code changes in dist folder
+        run: | 
+          git fetch --quiet
+          if [[ -n $(git status --porcelain dist) ]]; then
+            echo "Code changes detected. Proceeding with commit and push."
+            git add dist
+            git commit -m "Automated Build"
+            git push
+          else
+            echo "No code changes detected for dist folder. Skipping commit and push."
+          fi
 
       #- name: Set Environment Variables
       #  run: |
