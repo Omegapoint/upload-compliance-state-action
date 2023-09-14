@@ -52,7 +52,7 @@ jobs:
       - name: Run tests
         run: npm run testScript
       - name: Check for code changes in dist folder
-        run: | 
+        run: |
           git fetch --quiet
           if [[ -n $(git status --porcelain dist) ]]; then
             echo "Code changes detected. Proceeding with commit and push."
@@ -63,14 +63,14 @@ jobs:
             echo "No code changes detected for dist folder. Skipping commit and push."
           fi
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - uses: 'marvinpinto/action-automatic-releases@latest'
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
+          automatic_release_tag: 'latest'
           prerelease: false
-          title: "Development Build"
+          title: 'Development Build'
           files: /dist
-            
+
         #- name: Set Environment Variables
       #  run: |
       #    echo "configFile=${{ env.configFile }}" >> $GITHUB_ENV

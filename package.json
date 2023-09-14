@@ -7,7 +7,12 @@
     "build": "cd src && tsc",
     "start": "npm run build && node dist/index.js",
     "test": "npm run build && mocha dist/test/",
-    "testScript": "npm run build && mocha dist/test/ --reporter xunit --reporter-option output=ResultsFile.xml"
+    "testScript": "npm run build && mocha dist/test/ --reporter xunit --reporter-option output=ResultsFile.xml",
+    "prepare": "husky install",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --fix --ext .ts",
+    "format:write": "npx prettier -w .",
+    "format:check": "npx prettier -c ."
   },
   "keywords": [],
   "author": "",

@@ -8,7 +8,7 @@ export class UrlBuilder {
     codeRepositoryName: string,
     repositoryId: string,
     subscriptionId: string,
-    states: object
+    states: object,
   ): string {
     //Don´t forget to implement this as github secrets in the repository
     const urlReadToReadMe: string = config.urlRead;
@@ -38,7 +38,7 @@ export class UrlBuilder {
         '&codeRepositoryName=' +
         encodeURIComponent(codeRepositoryName) +
         '&stateType=' +
-        'timestamp'
+        'timestamp',
     );
     singleBadgeURL = '![' + 'Timestamp' + '](https://img.shields.io/endpoint?url=' + encodedURL + ')';
     urls = urls + singleBadgeURL + '<br/>' + '<br/>' + '\n';
@@ -56,7 +56,7 @@ export class UrlBuilder {
           '&codeRepositoryName=' +
           encodeURIComponent(codeRepositoryName) +
           '&stateType=' +
-          state
+          state,
       );
       singleBadgeURL = '[![' + state + '](https://img.shields.io/endpoint?url=' + encodedURL + ')]';
 

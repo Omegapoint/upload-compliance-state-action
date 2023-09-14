@@ -46,7 +46,7 @@ export class ResponseBodyBuilder {
   setThreatModelingDate(
     threatModelingDate: string,
     tmNumberOfActiveTickets: string,
-    tmNumberOfClosedTickets: string
+    tmNumberOfClosedTickets: string,
   ): this {
     if (!threatModelingDate) {
       return this;
@@ -63,7 +63,7 @@ export class ResponseBodyBuilder {
   setNumberOfReviewers(
     numberOfReviewers: string,
     branchPolicyUpdateDate: string,
-    branchPolicyUpdateEmail: string
+    branchPolicyUpdateEmail: string,
   ): this {
     if (!numberOfReviewers) {
       return this;
@@ -82,7 +82,7 @@ export class ResponseBodyBuilder {
     scaNumberOfSeverity1: string,
     scaNumberOfSeverity2: string,
     scaNumberOfSeverity3: string,
-    scaNumberOfSeverity4: string
+    scaNumberOfSeverity4: string,
   ): this {
     if (!scaTool) {
       return this;
@@ -115,14 +115,8 @@ export class ResponseBodyBuilder {
   setAllowedLocationPolicy(
     allowedLocationPolicy: string,
     compliantResources: string,
-    nonCompliantResources: string
+    nonCompliantResources: string,
   ): this {
-    console.log(
-      '(responsebodeybuilder) Checking: compliantResources + nonCompliantResources' +
-        compliantResources +
-        '+' +
-        nonCompliantResources
-    );
     if (!allowedLocationPolicy) {
       return this;
     } else {
@@ -162,7 +156,7 @@ export class ResponseBodyBuilder {
   setNumberOfHumansInSubscription(
     numUserInProdSeverity1: string,
     numUserInProdSeverity2: string,
-    numUserInProdSeverity3: string
+    numUserInProdSeverity3: string,
   ): this {
     if (!numUserInProdSeverity1 || !numUserInProdSeverity2 || !numUserInProdSeverity3) {
       return this;
@@ -189,7 +183,7 @@ export class ResponseBodyBuilder {
     cqNumberOfSeverity2: string,
     cqNumberOfSeverity3: string,
     cqNumberOfSeverity4: string,
-    cqNumberOfSeverity5: string
+    cqNumberOfSeverity5: string,
   ): this {
     if (!codeQualityTool) {
       return this;
@@ -221,7 +215,7 @@ export class ResponseBodyBuilder {
     sastTool: string,
     sastNumberOfSeverity1: string,
     sastNumberOfSeverity2: string,
-    sastNumberOfSeverity3: string
+    sastNumberOfSeverity3: string,
   ): this {
     if (!sastTool) {
       return this;

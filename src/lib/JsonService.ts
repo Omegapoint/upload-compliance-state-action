@@ -6,7 +6,7 @@ import Joi from 'joi';
 export function getContentOfFile(jsonPath: string): CyDigConfig {
   const jsonFilePath: string = path.resolve(
     __dirname,
-    path.relative(__dirname, path.normalize(jsonPath).replace(/^(\.\.(\/|\\|$))+/, ''))
+    path.relative(__dirname, path.normalize(jsonPath).replace(/^(\.\.(\/|\\|$))+/, '')),
   );
   const fileContent: string = fs.readFileSync(jsonFilePath, { encoding: 'utf-8' });
   const cydigConfig: CyDigConfig = JSON.parse(fileContent);
