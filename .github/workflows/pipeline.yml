@@ -36,7 +36,7 @@ jobs:
 
       - name: Update URL variables
         run: |
-          (Get-Content '${{ github.workspace }}/uploadcompliancestateaction/config.json') | Foreach-Object {
+          (Get-Content '${{ github.workspace }}/config.json') | Foreach-Object {
               $_ -replace '###urlupdate###', '${{vars.URLUPDATECOMPLIANCESTATE}}' `
                 -replace '###urlread###', '${{vars.URLREADTOREADME}}' `
                 -replace '###urldashboard###', '${{vars.URLDASHBOARD}}' `
