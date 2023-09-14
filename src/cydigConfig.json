@@ -9,7 +9,7 @@
     "date": "not specified",
     "boardsTag": "PT"
   },
-  "azureDevOps": {
+  "github": {
     "usingRepos": false,
     "repos": {
       "username": "johanna.ahlskog"
