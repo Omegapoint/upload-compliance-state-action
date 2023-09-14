@@ -1,4 +1,3 @@
-import { DefaultAzureCredential } from '@azure/identity';
 import { ComplianceStateService } from './lib/ComplianceStateService';
 import { getContentOfFile } from './lib/JsonService';
 import { CyDigConfig } from './lib/types/CyDigConfig';
@@ -29,7 +28,6 @@ async function runUpdateComplianceStateTask(): Promise<void> {
       );
     }
 
-    // const credentials: DefaultAzureCredential = new DefaultAzureCredential();
     const complianceStateService: ComplianceStateService = new ComplianceStateService();
     await complianceStateService.createAndSendComplianceState(
       teamName,
