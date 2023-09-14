@@ -72,7 +72,7 @@ jobs:
       #     title: 'Development Build'
       #     files: /dist
 
-        #- name: Set Environment Variables
+      #- name: Set Environment Variables
       #  run: |
       #    echo "configFile=${{ env.configFile }}" >> $GITHUB_ENV
       #    echo "disableWarningUsersInProd=${{ env.disableWarningUsersInProd }}" >> $GITHUB_ENV
