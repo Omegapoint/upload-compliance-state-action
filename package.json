@@ -4,7 +4,7 @@
   "description": "Task for updating compliance state",
   "main": "js_out/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "cd src && tsc",
     "start": "npm run build && node js_out/index.js",
     "test": "npm run build && mocha js_out/test/",
     "testScript": "npm run build && mocha js_out/test/ --reporter xunit --reporter-option output=ResultsFile.xml"
