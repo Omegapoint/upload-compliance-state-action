@@ -68,8 +68,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: "/dist"
-          commit: "v11"
-          tag: "v11"
+          commit: "v1.1"
+          tag: "v1.1"
       # - name: Check for code changes in dist folder
       #   run: |
       #     git fetch --quiet
