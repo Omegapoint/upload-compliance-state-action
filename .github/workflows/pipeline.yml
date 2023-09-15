@@ -53,18 +53,19 @@ jobs:
         run: npm run build
     
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          files: "./dist"
-          automatic_release_tag: "v1" 
-          title: "Latest Realease"
-      # - name: Create Release
-      #   uses: ncipollo/release-action@v1.13.0
+      # - uses: "marvinpinto/action-automatic-releases@latest"
       #   with:
-      #     artifacts: "dist"
-      #     tag: "v1"
+      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
+      #     prerelease: false
+      #     files: "/dist"
+      #     automatic_release_tag: "v1" 
+      #     title: "Latest Realease"
+      - name: Create Release
+        uses: ncipollo/release-action@v1.13.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: "dist"
+          tag: "v1"
     
       # - name: Check for code changes in dist folder
       #   run: |
