@@ -58,7 +58,7 @@ jobs:
           artifacts: "dist"
           generateReleaseNotes: true
           name: "Release ${{ github.ref }}"
-          tag: ${{ github.ref }}
+          tag: "v1"
     
       # - name: Check for code changes in dist folder
       #   run: |
