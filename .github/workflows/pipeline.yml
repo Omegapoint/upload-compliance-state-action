@@ -65,7 +65,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: "dist"
-          tag: "v1"
     
       # - name: Check for code changes in dist folder
       #   run: |
