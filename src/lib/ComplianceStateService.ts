@@ -32,6 +32,8 @@ export class ComplianceStateService {
       .then(() => {
         const urls: string = bodyBuilder.getUrls();
         const outputFilePath: string = path.join(__dirname, 'README_badges.txt'); // Output file in the same directory as the script
+        //Remove this console.log
+        console.log("Debug: " + outputFilePath)
         fs.writeFileSync(outputFilePath, urls, 'utf-8');
         console.log(urls);
       })
