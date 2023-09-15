@@ -64,8 +64,9 @@ jobs:
         uses: ncipollo/release-action@v1.13.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: "dist"
-    
+          artifacts: "/dist"
+          commit: ${{ github.run_id }}
+          tag: ${{ github.run_id }}
       # - name: Check for code changes in dist folder
       #   run: |
       #     git fetch --quiet
