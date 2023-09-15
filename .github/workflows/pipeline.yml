@@ -47,22 +47,32 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+      - name: Run tests
+        run: npm run testScript      
       - name: Compile to Javascript
         run: npm run build
-      - name: Run tests
-        run: npm run testScript
-      - name: Check for code changes in dist folder
-        run: |
-          git fetch --quiet
-          if [[ -n $(git status --porcelain dist) ]]; then
-            echo "Code changes detected. Proceeding with commit and push."
-            git add dist
-            git config --global user.name ${{ github.actor }}
-            git commit -m "Automated Build"
-            git push
-          else
-            echo "No code changes detected for dist folder. Skipping commit and push."
-          fi
+    
+      - name: Create Release
+        uses: ncipollo/release-action@v1.13.0
+        with:
+          artifacts: "dist"
+          generateReleaseNotes: true
+          name: "Release ${{ github.ref }}"
+          tag: ${{ github.ref }}
+    
+      # - name: Check for code changes in dist folder
+      #   run: |
+      #     git fetch --quiet
+      #     if [[ -n $(git status --porcelain dist) ]]; then
+      #       echo "Code changes detected. Proceeding with commit and push."
+      #       git add dist
+      #       git config --global user.name ${{ github.actor }}
+      #       git commit -m "Automated Build"
+      #       git push
+      #     else
+      #       echo "No code changes detected for dist folder. Skipping commit and push."
+      #     fi
+
 
       # - uses: 'marvinpinto/action-automatic-releases@latest'
       #   with:
