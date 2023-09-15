@@ -24,10 +24,7 @@ permissions:
 #    sonarQubeValues.sonarQubeUserKey: ''
 #    sonarQubeValues.sonarQubeDomain: ''
 
-on: 
-  push:
-    tags:
-      - '*'
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -55,7 +52,9 @@ jobs:
       - name: Compile to Javascript
         run: npm run build
     
-
+      - run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - uses: "marvinpinto/action-automatic-releases@latest"
       #   with:
       #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -63,13 +62,13 @@ jobs:
       #     files: "/dist"
       #     automatic_release_tag: "v1" 
       #     title: "Latest Realease"
-      - name: Create Release
-        uses: ncipollo/release-action@v1.13.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: "/dist"
-          commit: "v1.1"
-          tag: "v1.1"
+      # - name: Create Release
+      #   uses: ncipollo/release-action@v1.13.0
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     artifacts: "/dist"
+      #     commit: "v1"
+      #     tag: "v1"
       # - name: Check for code changes in dist folder
       #   run: |
       #     git fetch --quiet
