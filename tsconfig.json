@@ -13,7 +13,7 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "newLine": "lf",
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
   "exclude": ["./dist", "./node_modules", "./__tests__", "./coverage"]
 }
