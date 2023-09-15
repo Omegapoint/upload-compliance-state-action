@@ -82,7 +82,7 @@ jobs:
       #       echo "No code changes detected for dist folder. Skipping commit and push."
       #     fi
 
-
+##Test
       # - uses: 'marvinpinto/action-automatic-releases@latest'
       #   with:
       #     repo_token: '${{ secrets.GITHUB_TOKEN }}'
