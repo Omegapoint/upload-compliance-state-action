@@ -24,10 +24,7 @@ permissions:
 #    sonarQubeValues.sonarQubeUserKey: ''
 #    sonarQubeValues.sonarQubeDomain: ''
 
-on: 
-  push:
-    tags:
-      - 'v1'
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
