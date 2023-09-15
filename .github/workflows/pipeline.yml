@@ -65,7 +65,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: "/dist"
-          tag: ${{ github.ref }}
+          commit: ${{ github.ref }}
       # - name: Check for code changes in dist folder
       #   run: |
       #     git fetch --quiet
