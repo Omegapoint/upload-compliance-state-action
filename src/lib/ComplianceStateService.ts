@@ -2,6 +2,8 @@ import { BodyBuilder } from './BodyBuilder';
 import axios from 'axios';
 import config from '../config.json';
 import { ResponseBody } from './ResponseBody';
+import * as fs from 'fs';
+import * as path from 'path';
 
 export class ComplianceStateService {
   public async createAndSendComplianceState(
@@ -28,7 +30,12 @@ export class ComplianceStateService {
         },
       })
       .then(() => {
-        console.log(bodyBuilder.getUrls());
+        const urls: string = bodyBuilder.getUrls();
+        const outputFilePath: string = path.join(__dirname, 'README_badges.txt'); // Output file in the same directory as the script
+        //Remove this console.log
+        console.log("Debug: " + outputFilePath)
+        fs.writeFileSync(outputFilePath, urls, 'utf-8');
+        console.log(urls);
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch((error: any) => {
