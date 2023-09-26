@@ -19,7 +19,7 @@ async function runUpdateComplianceStateTask(): Promise<void> {
       throw new Error('You need to enter a team name as a input parameter or in your cydig config file');
     } else if (teamName === 'name-of-your-team') {
       throw new Error(
-        'Invalid team name. (Placeholder values are not allowed). Please update the cydigConfig with a valid team name.',
+        'Invalid team name. (Placeholder values are not allowed). Please update the cydigConfig with a valid team name.'
       );
     }
 
@@ -28,7 +28,7 @@ async function runUpdateComplianceStateTask(): Promise<void> {
       teamName,
       repositoryId,
       codeRepositoryName,
-      subscriptionId,
+      subscriptionId
     );
   } catch (error) {
     // Fail the workflow run if an error occurs

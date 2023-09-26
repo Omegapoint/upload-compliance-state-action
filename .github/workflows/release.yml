@@ -1,6 +1,6 @@
 name: Creating Release
 
-on: 
+on:
   pull_request:
     types: [closed]
 
@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Update URL variables
         run: |
           (Get-Content '${{ github.workspace }}/src/config.json') | Foreach-Object {
@@ -22,11 +22,11 @@ jobs:
 
               } | Set-Content '${{ github.workspace }}/config.json'
         shell: pwsh
-      
+
       - name: Install dependencies and build
         run: npm ci && npm run build
-      
-      - name: "Get latest release tag"
+
+      - name: 'Get latest release tag'
         id: latest_release
         run: |
           current_version=`gh release list --limit 30 | grep Latest | awk '{ print $1;}'`
@@ -45,7 +45,7 @@ jobs:
         run: |
           # Display the version from the environment
           echo "Latest Version: ${{ env.version }}"
-      
+
       - id: label
         uses: zwaldowski/match-label-action@v4
         with:
@@ -56,10 +56,10 @@ jobs:
         if: ${{ steps.label.outputs.match != 'none' }}
         id: bump-semver
         with:
-          current_version:  ${{ env.version }}
+          current_version: ${{ env.version }}
           level: ${{steps.label.outputs.match}}
 
-      - name: "Creating Release"
+      - name: 'Creating Release'
         if: ${{ steps.label.outputs.match != 'none' }}
         run: |
           gh release create  ${{ steps.bump-semver.outputs.new_version }} --title " ${{ steps.bump-semver.outputs.new_version }}" --generate-notes
@@ -72,4 +72,3 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           tag_name: ${{ steps.bump-semver.outputs.new_version }}
-      
