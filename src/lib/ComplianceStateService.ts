@@ -10,7 +10,7 @@ export class ComplianceStateService {
     teamName: string,
     repositoryId: string,
     codeRepositoryName: string,
-    subscriptionId: string,
+    subscriptionId: string
   ): Promise<void> {
     // POST-request to Azure function
     const urlUpdate: string = config.urlUpdate;
@@ -19,7 +19,7 @@ export class ComplianceStateService {
       teamName,
       repositoryId,
       codeRepositoryName,
-      subscriptionId,
+      subscriptionId
     );
 
     await axios
@@ -33,7 +33,7 @@ export class ComplianceStateService {
         const urls: string = bodyBuilder.getUrls();
         const outputFilePath: string = path.join(__dirname, 'README_badges.txt'); // Output file in the same directory as the script
         //Remove this console.log
-        console.log("Debug: " + outputFilePath)
+        console.log('Debug: ' + outputFilePath);
         fs.writeFileSync(outputFilePath, urls, 'utf-8');
         console.log(urls);
       })

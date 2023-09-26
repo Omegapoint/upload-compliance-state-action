@@ -1,0 +1,33 @@
+name: Test
+run-name: ${{ github.actor }} is running tests
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout action
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+      #   - name: Update URL variables
+      #     run: |
+      #       (Get-Content '${{ github.workspace }}/src/config.json') | Foreach-Object {
+      #           $_ -replace '###urlupdate###', '${{vars.URLUPDATECOMPLIANCESTATE}}' `
+      #             -replace '###urlread###', '${{vars.URLREADTOREADME}}' `
+      #             -replace '###urldashboard###', '${{vars.URLDASHBOARD}}' `
+      #             -replace '###readtoreadmeaccesskey###', '${{secrets.READTOREADMEACCESSKEY}}' `
+
+      #           } | Set-Content '${{ github.workspace }}/config.json'
+      #     shell: pwsh
+
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm run test
+      - name: Compile to Javascript
+        run: npm run build

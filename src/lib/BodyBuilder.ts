@@ -116,7 +116,7 @@ export class BodyBuilder {
       codeRepositoryName,
       repositoryId,
       subscriptionId,
-      urlBody,
+      urlBody
     );
 
     const responseBody: ResponseBody = new ResponseBodyBuilder()
@@ -140,7 +140,7 @@ export class BodyBuilder {
         cqNumberOfSeverity2,
         cqNumberOfSeverity3,
         cqNumberOfSeverity4,
-        cqNumberOfSeverity5,
+        cqNumberOfSeverity5
       )
       .build();
     return responseBody;
