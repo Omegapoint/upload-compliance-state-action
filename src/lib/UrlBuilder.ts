@@ -1,4 +1,3 @@
-import config from '../config.json';
 
 export class UrlBuilder {
   static createUrl(
@@ -11,9 +10,9 @@ export class UrlBuilder {
     states: object
   ): string {
     //Don´t forget to implement this as github secrets in the repository
-    const urlReadToReadMe: string = config.urlRead;
-    const urlDashboard: string = config.urlDashboard;
-    const readToReadMeKeyAcessKey: string = config.readToReadMeKeyAcessKey;
+    const urlReadToReadMe: string = process.env.urlRead || '';
+    const urlDashboard: string = process.env.urlDashboard || '';
+    const readToReadMeKeyAcessKey: string = process.env.readToReadMeKeyAcessKey || '';
     let urls: string = '';
     let encodedURL: string;
     let singleBadgeURL: string;

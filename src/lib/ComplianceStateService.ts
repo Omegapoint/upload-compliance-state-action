@@ -1,9 +1,9 @@
 import { BodyBuilder } from './BodyBuilder';
 import axios from 'axios';
-import config from '../config.json';
 import { ResponseBody } from './ResponseBody';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as core from '@actions/core';
 
 export class ComplianceStateService {
   public async createAndSendComplianceState(
@@ -13,7 +13,7 @@ export class ComplianceStateService {
     subscriptionId: string
   ): Promise<void> {
     // POST-request to Azure function
-    const urlUpdate: string = config.urlUpdate;
+    const urlUpdate: string = process.env.urlUpdate || '';
     const bodyBuilder: BodyBuilder = new BodyBuilder();
     const responseBody: ResponseBody = bodyBuilder.createBody(
       teamName,
@@ -35,6 +35,7 @@ export class ComplianceStateService {
         //Remove this console.log
         console.log('Debug: ' + outputFilePath);
         fs.writeFileSync(outputFilePath, urls, 'utf-8');
+        core.setOutput("readme-badges", urls);
         console.log(urls);
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
