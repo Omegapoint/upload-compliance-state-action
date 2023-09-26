@@ -30,7 +30,7 @@ async function runUpdateComplianceStateTask(): Promise<void> {
       codeRepositoryName,
       subscriptionId,
     );
-  } catch (error: any) {
+  } catch (error) {
     // Fail the workflow run if an error occurs
     core.setFailed(error);
   }
