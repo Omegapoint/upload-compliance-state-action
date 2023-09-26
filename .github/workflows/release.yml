@@ -12,17 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Update URL variables
-        run: |
-          (Get-Content '${{ github.workspace }}/src/config.json') | Foreach-Object {
-              $_ -replace '###urlupdate###', '${{vars.URLUPDATECOMPLIANCESTATE}}' `
-                -replace '###urlread###', '${{vars.URLREADTOREADME}}' `
-                -replace '###urldashboard###', '${{vars.URLDASHBOARD}}' `
-                -replace '###readtoreadmeaccesskey###', '${{secrets.READTOREADMEACCESSKEY}}' `
-
-              } | Set-Content '${{ github.workspace }}/config.json'
-        shell: pwsh
-
       - name: Install dependencies and build
         run: npm ci && npm run build
 
