@@ -2,16 +2,14 @@
 export class UrlBuilder {
   static createUrl(
     teamName: string,
-    devopsOrgName: string,
     teamProjectName: string,
     codeRepositoryName: string,
-    repositoryId: string,
     subscriptionId: string,
     states: object
   ): string {
     //Don´t forget to implement this as github secrets in the repository
     const urlReadToReadMe: string = process.env.urlRead || '';
-    const urlDashboard: string = process.env.urlDashboard || '';
+    const urlDashboard: string = "https://cydig.omegapoint.cloud/";
     const readToReadMeKeyAcessKey: string = process.env.readToReadMeKeyAcessKey || '';
     let urls: string = '';
     let encodedURL: string;
@@ -60,16 +58,6 @@ export class UrlBuilder {
       singleBadgeURL = '[![' + state + '](https://img.shields.io/endpoint?url=' + encodedURL + ')]';
 
       switch (state) {
-        case 'numberOfReviewers':
-          redirectLink =
-            '(https://dev.azure.com/' +
-            devopsOrgName +
-            '/' +
-            teamProjectName +
-            '/_settings/repositories?repo=' +
-            repositoryId +
-            '&_a=policiesMid&refs=refs/heads/main)';
-          break;
         case 'secureScore':
           redirectLink =
             '(https://portal.azure.com/#view/Microsoft_Azure_Security/RecommendationsBladeV2/subscriptionIds~/%5B%22' +

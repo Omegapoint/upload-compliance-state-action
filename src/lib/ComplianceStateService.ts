@@ -8,7 +8,6 @@ import * as core from '@actions/core';
 export class ComplianceStateService {
   public async createAndSendComplianceState(
     teamName: string,
-    repositoryId: string,
     codeRepositoryName: string,
     subscriptionId: string
   ): Promise<void> {
@@ -17,7 +16,6 @@ export class ComplianceStateService {
     const bodyBuilder: BodyBuilder = new BodyBuilder();
     const responseBody: ResponseBody = bodyBuilder.createBody(
       teamName,
-      repositoryId,
       codeRepositoryName,
       subscriptionId
     );
@@ -32,8 +30,6 @@ export class ComplianceStateService {
       .then(() => {
         const urls: string = bodyBuilder.getUrls();
         const outputFilePath: string = path.join(__dirname, 'README_badges.txt'); // Output file in the same directory as the script
-        //Remove this console.log
-        console.log('Debug: ' + outputFilePath);
         fs.writeFileSync(outputFilePath, urls, 'utf-8');
         core.setOutput("readme-badges", urls);
         console.log(urls);
@@ -42,7 +38,6 @@ export class ComplianceStateService {
       .catch((error: any) => {
         console.log(error);
         throw new Error(`Request failed with status code: ${error.message}`);
-        //  ${error.response.data}`);
       });
   }
 }

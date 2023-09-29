@@ -6,11 +6,8 @@ import * as github from '@actions/github';
 
 async function runUpdateComplianceStateTask(): Promise<void> {
   try {
-    //Fix these
     const codeRepositoryName: string = github.context.repo.repo;
-    const repositoryId: string = core.getInput('github.repository_id');
     const subscriptionId: string = core.getInput('subscriptionId');
-
     const cydigConfigPath: string = core.getInput('cydigConfigPath'); //Need both string??
     const cydigConfig: CyDigConfig = getContentOfFile(cydigConfigPath);
     const teamName: string = cydigConfig.teamName;
@@ -26,7 +23,6 @@ async function runUpdateComplianceStateTask(): Promise<void> {
     const complianceStateService: ComplianceStateService = new ComplianceStateService();
     await complianceStateService.createAndSendComplianceState(
       teamName,
-      repositoryId,
       codeRepositoryName,
       subscriptionId
     );
