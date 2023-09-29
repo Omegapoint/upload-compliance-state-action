@@ -3,16 +3,12 @@ import { ResponseBodyBuilder } from './ResponseBodyBuilder';
 import { UrlBodyBuilder } from './UrlBodyBuilder';
 import { UrlBody } from './UrlBody';
 import { ResponseBody } from './ResponseBody';
-import * as core from '@actions/core';
 
 let urls: string = '';
 
 export class BodyBuilder {
-  createBody(teamName: string, repositoryId: string, codeRepositoryName: string, subscriptionId: string): ResponseBody {
-    let devopsOrgName: string = process.env.System_TeamFoundationCollectionUri || '';
-    //TODO: teamProjectName will be null.
-    //const teamProjectName: string = process.env.System_TeamProject || '';
-    const teamProjectName: string = process.env.System_TeamProject || teamName;
+  createBody(teamName: string, codeRepositoryName: string, subscriptionId: string): ResponseBody {
+    const teamProjectName: string = teamName || '';
     const allowedLocationPolicy: string = process.env.allowedLocationPolicy || '';
     const secureScore: string = process.env.secureScore || '';
     const numberOfDeployedVMs: string = process.env.numberOfDeployedVMs || '';
@@ -55,44 +51,6 @@ export class BodyBuilder {
     const numUserInProdSeverity2: string = process.env.numUserInProdSeverity2 || '';
     const numUserInProdSeverity3: string = process.env.numUserInProdSeverity3 || '';
 
-    console.log('devopsOrgName:', devopsOrgName);
-    console.log('teamProjectName:', process.env.teamProjectName);
-    console.log('allowedLocationPolicy:', process.env.allowedLocationPolicy);
-    console.log('secureScore:', process.env.secureScore);
-    console.log('numberOfDeployedVMs:', process.env.numberOfDeployedVMs);
-    console.log('threatModelingDate:', process.env.threatModelingDate);
-    console.log('scaTool:', process.env.scaTool);
-    console.log('sastTool:', process.env.sastTool);
-    console.log('pentestDate:', process.env.pentestDate);
-    console.log('codeQualityTool:', process.env.codeQualityTool);
-    console.log('numberOfExposedSecrets:', process.env.numberOfExposedSecrets);
-    console.log('numberOfReviewers:', process.env.numberOfReviewers);
-    console.log('branchPolicyUpdateDate:', process.env.branchPolicyUpdateDate);
-    console.log('branchPolicyUpdateEmail:', process.env.branchPolicyUpdateEmail);
-    console.log('compliantResources:', process.env.compliantResources);
-    console.log('nonCompliantResources:', process.env.nonCompliantResources);
-    console.log('scaNumberOfSeverity1:', process.env.scaNumberOfSeverity1);
-    console.log('scaNumberOfSeverity2:', process.env.scaNumberOfSeverity2);
-    console.log('scaNumberOfSeverity3:', process.env.scaNumberOfSeverity3);
-    console.log('scaNumberOfSeverity4:', process.env.scaNumberOfSeverity4);
-    console.log('cqNumberOfSeverity1:', process.env.cqNumberOfSeverity1);
-    console.log('cqNumberOfSeverity2:', process.env.cqNumberOfSeverity2);
-    console.log('cqNumberOfSeverity3:', process.env.cqNumberOfSeverity3);
-    console.log('cqNumberOfSeverity4:', process.env.cqNumberOfSeverity4);
-    console.log('cqNumberOfSeverity5:', process.env.cqNumberOfSeverity5);
-    console.log('sastNumberOfSeverity1:', process.env.sastNumberOfSeverity1);
-    console.log('sastNumberOfSeverity2:', process.env.sastNumberOfSeverity2);
-    console.log('sastNumberOfSeverity3:', process.env.sastNumberOfSeverity3);
-    console.log('tmNumberOfActiveTickets:', process.env.tmNumberOfActiveTickets);
-    console.log('tmNumberOfClosedTickets:', process.env.tmNumberOfClosedTickets);
-    console.log('ptNumberOfActiveTickets:', process.env.ptNumberOfActiveTickets);
-    console.log('ptNumberOfClosedTickets:', process.env.ptNumberOfClosedTickets);
-    console.log('numUserInProdSeverity1:', process.env.numUserInProdSeverity1);
-    console.log('numUserInProdSeverity2:', process.env.numUserInProdSeverity2);
-    console.log('numUserInProdSeverity3:', process.env.numUserInProdSeverity3);
-
-    devopsOrgName = this.splitUrl(devopsOrgName);
-
     //For printing urls in the pipeline
     const urlBody: UrlBody = new UrlBodyBuilder()
       .setThreatModelingDate(threatModelingDate)
@@ -111,10 +69,8 @@ export class BodyBuilder {
     urls = UrlBuilder.createUrl(
       // eslint-disable-line
       teamName,
-      devopsOrgName,
       teamProjectName,
       codeRepositoryName,
-      repositoryId,
       subscriptionId,
       urlBody
     );
@@ -146,60 +102,7 @@ export class BodyBuilder {
     return responseBody;
   }
 
-  splitUrl(devopsOrgName: string): string {
-    if (typeof devopsOrgName === 'string') {
-      const splitted: string[] = devopsOrgName.split('/');
-      devopsOrgName = splitted[splitted.length - 2];
-    } else {
-      core.setFailed('devopsOrgName is undefined, should be string');
-    }
-    return devopsOrgName;
-  }
   getUrls(): string {
     return urls;
   }
 }
-
-// let devopsOrgName: string = core.getInput('System.TeamFoundationCollectionUri');
-// const teamProjectName: string = core.getInput('System.TeamProject');
-// const allowedLocationPolicy: string = core.getInput('allowedLocationPolicy');
-// const secureScore: string = core.getInput('secureScore');
-// const numberOfDeployedVMs: string = core.getInput('numberOfDeployedVMs');
-
-// const threatModelingDate: string = core.getInput('threatModelingDate');
-// const scaTool: string = core.getInput('scaTool');
-// const sastTool: string = core.getInput('sastTool');
-// const pentestDate: string = core.getInput('pentestDate');
-// const codeQualityTool: string = core.getInput('codeQualityTool');
-// const numberOfExposedSecrets: string = core.getInput('numberOfExposedSecrets');
-// const numberOfReviewers: string = core.getInput('numberOfReviewers');
-// const branchPolicyUpdateDate: string = core.getInput('branchPolicyUpdateDate');
-// const branchPolicyUpdateEmail: string = core.getInput('branchPolicyUpdateEmail');
-
-// const compliantResources: string = core.getInput('compliantResources');
-// const nonCompliantResources: string = core.getInput('nonCompliantResources');
-
-// const scaNumberOfSeverity1: string = core.getInput('SCAnumberOfSeverity1');
-// const scaNumberOfSeverity2: string = core.getInput('SCAnumberOfSeverity2');
-// const scaNumberOfSeverity3: string = core.getInput('SCAnumberOfSeverity3');
-// const scaNumberOfSeverity4: string = core.getInput('SCAnumberOfSeverity4');
-
-// const cqNumberOfSeverity1: string = core.getInput('CQnumberOfSeverity1');
-// const cqNumberOfSeverity2: string = core.getInput('CQnumberOfSeverity2');
-// const cqNumberOfSeverity3: string = core.getInput('CQnumberOfSeverity3');
-// const cqNumberOfSeverity4: string = core.getInput('CQnumberOfSeverity4');
-// const cqNumberOfSeverity5: string = core.getInput('CQnumberOfSeverity5');
-
-// const sastNumberOfSeverity1: string = core.getInput('SASTnumberOfSeverity1');
-// const sastNumberOfSeverity2: string = core.getInput('SASTnumberOfSeverity2');
-// const sastNumberOfSeverity3: string = core.getInput('SASTnumberOfSeverity3');
-
-// const tmNumberOfActiveTickets: string = core.getInput('tmNumberOfActiveTickets');
-// const tmNumberOfClosedTickets: string = core.getInput('tmNumberOfClosedTickets');
-
-// const ptNumberOfActiveTickets: string = core.getInput('ptNumberOfActiveTickets');
-// const ptNumberOfClosedTickets: string = core.getInput('ptNumberOfClosedTickets');
-
-// const numUserInProdSeverity1: string = core.getInput('numUserInProdSeverity1');
-// const numUserInProdSeverity2: string = core.getInput('numUserInProdSeverity2');
-// const numUserInProdSeverity3: string = core.getInput('numUserInProdSeverity3');
