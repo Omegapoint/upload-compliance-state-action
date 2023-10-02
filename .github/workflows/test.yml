@@ -28,15 +28,17 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Install upload action dependencies
-        run: npm ci
-      - name: Install compliance action dependencies
         run: |
-          cd compliance-action 
+          cd upload-action
           npm ci
-      - name: Install azure compliance action dependencies
-        run: |
-          cd azure-compliance-action 
-          npm ci
+      # - name: Install compliance action dependencies
+      #   run: |
+      #     cd compliance-action 
+      #     npm ci
+      # - name: Install azure compliance action dependencies
+      #   run: |
+      #     cd azure-compliance-action 
+      #     npm ci
 
       # - name: Run upload tests
       #   run: npm run test
