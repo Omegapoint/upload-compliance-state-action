@@ -10,7 +10,7 @@ export class UrlBuilder {
     //Please update the url if there are any changes to the infrastructure.
     const urlDashboard: string = "https://cydig.omegapoint.cloud/";
     //Please update the func url if there are any changes to the infrastructure.
-    const readFunctionURL: string = 'https://func-cydig-comp-state-prod.azurewebsites.net/api/ReadToReadme?';
+    const readFunctionURL: string = 'https://func-cydig-comp-state-prod.azurewebsites.net/api/ReadToReadme?code=';
     //Please update the url if there are any changes to the infrastructure.
     const readToReadMeKeyAcessKey: string = 'xaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX';
   
@@ -28,7 +28,6 @@ export class UrlBuilder {
     //timestamp
     encodedURL = encodeURIComponent(
       readFunctionURL +
-        'code=' +
         readToReadMeKeyAcessKey +
         '&teamName=' +
         encodeURIComponent(teamName) +

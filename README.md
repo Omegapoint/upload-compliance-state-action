@@ -21,12 +21,12 @@ npm run format:write
 Start developing and create tests, to run your test run: `npm run test`. When pushing the code the repository the workflow will build and push your code to the repository. 
 
 ### How to trigger the dev-function for upload-compliance-state
-1. Ensure that a secret named ```urlUpdateDev``` has been created. [(Read more here on how to create a GitHub secret)](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
-2. Make sure the secret is an environment variable ```urlUpdate``` in the workflow you are invoking.
+1. Ensure that a secret named ```URLUPDATEDEV``` has been created. [(Read more here on how to create a GitHub secret)](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
+2. Make sure the secret is set as an environment variable ```urlUpdate``` in the workflow you are invoking.
 
 ```
 env:
-  urlUpdate: ${{ secrets.urlUpdateDev }}
+  urlUpdate: ${{ secrets.URLUPDATEDEV }}
 ```
 
 ### How to log the badge
