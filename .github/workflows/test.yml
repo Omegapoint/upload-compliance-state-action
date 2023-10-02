@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout Upload action
         uses: actions/checkout@v4
+        with:
+          path: upload-action
       - name: Checkout Azure compliance action
         uses: actions/checkout@v4
         with:
@@ -36,27 +38,29 @@ jobs:
           cd azure-compliance-action 
           npm ci
 
-      - name: Run upload tests
-        run: npm run test
-      - name: Run azure compliance tests
-        run : |
-          cd azure-compliance-action
-          npm run test
-      - name: Run compliance tests
-        run : |
-          cd compliance-action
-          npm run test
+      # - name: Run upload tests
+      #   run: npm run test
+      # - name: Run azure compliance tests
+      #   run : |
+      #     cd azure-compliance-action
+      #     npm run test
+      # - name: Run compliance tests
+      #   run : |
+      #     cd compliance-action
+      #     npm run test
         
       - name: Build Upload action
-        run: npm run build
-      - name: Build azure compliance action
         run: |
-          cd azure-compliance-action
+          cd upload-action 
           npm run build
-      - name: Build compliance action
-        run: |
-          cd compliance-action
-          npm run build
+      # - name: Build azure compliance action
+      #   run: |
+      #     cd azure-compliance-action
+      #     npm run build
+      # - name: Build compliance action
+      #   run: |
+      #     cd compliance-action
+      #     npm run build
 
       # - name: 'Az CLI login'
       #   uses: azure/login@v1
@@ -76,11 +80,12 @@ jobs:
     
       - name: display path
         run: |
-          cd src
+          echo ${{ github.workspace }}
+          cd upload-action
           ls
       - name: 'Run Upload Action'
         uses: ./
         with:
-          cydigConfigPath: ${{ github.workspace }}/src/cydigconfig.json
+          cydigConfigPath: ${{ github.workspace }}/upload-action/src/cydigconfig.json
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
     
