@@ -38,24 +38,24 @@ jobs:
 
       - name: Run upload tests
         run: npm run test
-      - name: Run compliance tests
-        run : |
-          cd compliance-action
-          npm run test
       - name: Run azure compliance tests
         run : |
           cd azure-compliance-action
           npm run test
+      - name: Run compliance tests
+        run : |
+          cd compliance-action
+          npm run test
         
       - name: Build Upload action
         run: npm run build
-      - name: Build compliance action
-        run: |
-          cd compliance-action
-          npm run build
       - name: Build azure compliance action
         run: |
           cd azure-compliance-action
+          npm run build
+      - name: Build compliance action
+        run: |
+          cd compliance-action
           npm run build
 
       - name: 'Az CLI login'
@@ -71,7 +71,7 @@ jobs:
       - name: 'Run Compliance Controls'
         uses: ./compliance-action
         with:
-          cydigConfigPath: ./src/cydigconfig.json
+          cydigConfigPath: src/cydigconfig.json
           PAT-token: ${{ secrets.MY_GITHUB_PAT}}
       - name: 'Run Upload Action'
         uses: ./
