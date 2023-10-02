@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout Upload action
         uses: actions/checkout@v4
-        with:  
-          path: upload-action
       - name: Checkout Azure compliance action
         uses: actions/checkout@v4
         with:
@@ -28,9 +26,7 @@ jobs:
         uses: actions/setup-node@v3
       
       - name: Install upload action dependencies
-        run: |
-          cd upload-action
-           npm ci
+        run: npm ci
       - name: Install compliance action dependencies
         run: |
           cd compliance-action 
@@ -41,9 +37,7 @@ jobs:
           npm ci
 
       - name: Run upload tests
-        run: |
-          cd upload-action 
-          npm run test
+        run: npm run test
       - name: Run azure compliance tests
         run : |
           cd azure-compliance-action
@@ -54,9 +48,7 @@ jobs:
           npm run test
         
       - name: Build Upload action
-        run: | 
-          cd upload-action 
-          npm run build
+        run: npm run build
       - name: Build azure compliance action
         run: |
           cd azure-compliance-action
@@ -80,10 +72,10 @@ jobs:
         uses: ./compliance-action
         with:
           cydigConfigPath: ${{ github.workspace }}/compliance-action/src/cydigconfig.json
-          PAT-token: ${{ secrets.MY_GITHUB_PAT}}
+          PAT-token: ${{ secrets.MY_GITHUB_PAT }}
       - name: 'Run Upload Action'
-        uses: ./upload-action
+        uses: ./
         with:
-          cydigConfigPath: ../upload-action/src/cydigconfig.json
+          cydigConfigPath: ${{ github.workspace }}/src/cydigconfig.json
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
     
