@@ -1,8 +1,8 @@
 name: Test
 run-name: ${{ github.actor }} is running tests
 permissions:
-  contents: write
-  pages: write
+  contents: read
+  pages: read
   id-token: write
 
 on: [pull_request]
@@ -71,7 +71,7 @@ jobs:
       - name: 'Run Compliance Controls'
         uses: ./compliance-action
         with:
-          cydigConfigPath: ${{ github.workspace }}/src/cydigconfig.json
+          cydigConfigPath: ./src/cydigconfig.json
           PAT-token: ${{ secrets.MY_GITHUB_PAT}}
       - name: 'Run Upload Action'
         uses: ./
