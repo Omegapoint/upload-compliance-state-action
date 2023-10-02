@@ -84,6 +84,6 @@ jobs:
       - name: 'Run Upload Action'
         uses: ./upload-action
         with:
-          cydigConfigPath: ..src/cydigconfig.json
+          cydigConfigPath: ../upload-action/src/cydigconfig.json
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
     
