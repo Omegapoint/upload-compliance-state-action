@@ -79,11 +79,11 @@ jobs:
       - name: 'Run Compliance Controls'
         uses: ./compliance-action
         with:
-          cydigConfigPath: ${{ github.workspace }}/compliance-action/src/cydigconfig.json
+          cydigConfigPath: ${{ github.workspace }}/upload-action/src/cydigconfig.json
           PAT-token: ${{ secrets.MY_GITHUB_PAT}}
       - name: 'Run Upload Action'
         uses: ./upload-action
         with:
-          cydigConfigPath: upload-action/src/cydigconfig.json
-          PAT-token: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
+          cydigConfigPath: ${{ github.workspace }}/upload-action/src/cydigconfig.json
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
     
