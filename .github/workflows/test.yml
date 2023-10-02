@@ -5,18 +5,77 @@ permissions:
   pages: write
   id-token: write
 
-on: [push]
+on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout action
+      - name: Checkout Upload action
         uses: actions/checkout@v3
+      - name: Checkout compliance action
+        uses: actions/checkout@v4
+        with:
+           repository: Omegapoint/cydig-compliance-action
+           path: compliance-action
+      - name: Checkout compliance action
+        uses: actions/checkout@v4
+        with:
+          repository: Omegapoint/cydig-azure-compliance-action
+          path: azure-compliance-action
       - name: Setup node
         uses: actions/setup-node@v3
-      - name: Install dependencies
+      
+      - name: Install upload action dependencies
         run: npm ci
-      - name: Run tests
+      - name: Install compliance action dependencies
+        run: |
+          cd compliance-action 
+          npm ci
+      - name: Install azure compliance action dependencies
+        run: |
+          cd azure-compliance-action 
+          npm ci
+
+      - name: Run upload tests
         run: npm run test
-      - name: Compile to Javascript
+      - name: Run compliance tests
+        run : |
+          cd compliance-action
+          npm run test
+      - name: Run azure compliance tests
+        run : |
+          cd azure-compliance-action
+          npm run test
+        
+      - name: Build Upload action
         run: npm run build
+      - name: Build compliance action
+        run: |
+          cd compliance-action
+          npm run build
+      - name: Build azure compliance action
+        run: |
+          cd azure-compliance-action
+          npm run build
+
+      - name: 'Az CLI login'
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID_DEV }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
+      - name: 'Run Azure Compliance Controls'
+        uses: ./azure-compliance-action
+        with:
+          subscription: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
+      - name: 'Run Compliance Controls'
+        uses: ./compliance-action
+        with:
+          cydigConfigPath: ${{ github.workspace }}/src/cydigconfig.json
+          PAT-token: ${{ secrets.MY_GITHUB_PAT}}
+      - name: 'Run Upload Action'
+        uses: ./
+        with:
+          cydigConfigPath: ${{ github.workspace }}/src/cydigconfig.json
+          PAT-token: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
+    
