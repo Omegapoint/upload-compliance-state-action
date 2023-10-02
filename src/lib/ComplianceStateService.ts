@@ -12,7 +12,8 @@ export class ComplianceStateService {
     subscriptionId: string
   ): Promise<void> {
     // POST-request to Azure function
-    const urlUpdate: string = process.env.urlUpdate || '';
+    const updateKey: string = process.env.updateKey || '';
+    const urlUpdate: string = 'https://func-cydig-comp-state-prod.azurewebsites.net/api/UpdateComplianceState?code=' + updateKey;
     const bodyBuilder: BodyBuilder = new BodyBuilder();
     const responseBody: ResponseBody = bodyBuilder.createBody(
       teamName,
