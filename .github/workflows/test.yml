@@ -14,21 +14,23 @@ jobs:
         uses: actions/checkout@v4
         with:  
           path: upload-action
+      - name: Checkout Azure compliance action
+        uses: actions/checkout@v4
+        with:
+           repository: Omegapoint/cydig-azure-compliance-action
+           path: azure-compliance-action
       - name: Checkout compliance action
         uses: actions/checkout@v4
         with:
-           repository: Omegapoint/cydig-compliance-action
-           path: compliance-action
-      - name: Checkout compliance action
-        uses: actions/checkout@v4
-        with:
-          repository: Omegapoint/cydig-azure-compliance-action
-          path: azure-compliance-action
+          repository: Omegapoint/cydig-compliance-action
+          path: compliance-action
       - name: Setup node
         uses: actions/setup-node@v3
       
       - name: Install upload action dependencies
-        run: npm ci
+        run: |
+          cd upload-action
+           npm ci
       - name: Install compliance action dependencies
         run: |
           cd compliance-action 
@@ -39,7 +41,9 @@ jobs:
           npm ci
 
       - name: Run upload tests
-        run: npm run test
+        run: |
+          cd upload-action 
+          npm run test
       - name: Run azure compliance tests
         run : |
           cd azure-compliance-action
@@ -50,7 +54,9 @@ jobs:
           npm run test
         
       - name: Build Upload action
-        run: npm run build
+        run: | 
+          cd upload-action 
+          npm run build
       - name: Build azure compliance action
         run: |
           cd azure-compliance-action
