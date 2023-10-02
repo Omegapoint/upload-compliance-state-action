@@ -24,7 +24,7 @@ jobs:
           path: compliance-action
       - name: Setup node
         uses: actions/setup-node@v3
-      
+
       - name: Install upload action dependencies
         run: npm ci
       - name: Install compliance action dependencies
@@ -58,24 +58,29 @@ jobs:
           cd compliance-action
           npm run build
 
-      - name: 'Az CLI login'
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID_DEV }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
-      - name: 'Run Azure Compliance Controls'
-        uses: ./azure-compliance-action
-        with:
-          subscription: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
-      - name: 'Run Compliance Controls'
-        uses: ./compliance-action
-        with:
-          cydigConfigPath: ${{ github.workspace }}/compliance-action/src/cydigconfig.json
-          PAT-token: ${{ secrets.MY_GITHUB_PAT }}
+      # - name: 'Az CLI login'
+      #   uses: azure/login@v1
+      #   with:
+      #     client-id: ${{ secrets.AZURE_CLIENT_ID_DEV }}
+      #     tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+      #     subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
+      # - name: 'Run Azure Compliance Controls'
+      #   uses: ./azure-compliance-action
+      #   with:
+      #     subscription: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
+      # - name: 'Run Compliance Controls'
+      #   uses: ./compliance-action
+      #   with:
+      #     cydigConfigPath: ${{ github.workspace }}/compliance-action/src/cydigconfig.json
+      #     PAT-token: ${{ secrets.MY_GITHUB_PAT }}
+    
+      - name: display path
+        run: |
+          ls
+          
       - name: 'Run Upload Action'
         uses: ./
         with:
-          cydigConfigPath: ../src/cydigconfig.json
+          cydigConfigPath: ./compliance-action/upload-action/src/cydigconfig.json
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
     
