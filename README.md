@@ -2,7 +2,7 @@
 
 This repository contains the upload compliance state action.
 
-### Development on already existing task (uploadcompliancestatetask)
+## Development on upload-compliance-state
 
 To start development, create a branch named **feature/your-branch-name**.
 
@@ -20,9 +20,14 @@ npm run format:write
 
 Start developing and create tests, to run your test run: `npm run test`. When pushing the code the repository the workflow will build and push your code to the repository. 
 
-## Adding a new control to upload
+### How to trigger the dev-function for upload-compliance-state
+1. Ensure that a secret named ```URLUPDATEDEV``` has been created. [(Read more here on how to create a GitHub secret)](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
+2. Make sure the secret is set as an environment variable ```urlUpdate``` in the workflow you are invoking.
 
-Start with creating a branch named **feature/your-branch-name**.
+```
+env:
+  urlUpdate: ${{ secrets.URLUPDATEDEV }}
+```
 
 ### How to log the badge
 The UrlBody class contains all the badges/controls that will be logged in the workflow. The UrlBodyBuilder class is responsible for building the UrlBody. To add a badge for logging in the workflow, follow these steps:
