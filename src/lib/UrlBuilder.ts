@@ -45,7 +45,6 @@ export class UrlBuilder {
       redirectLink = '';
       encodedURL = encodeURIComponent(
         readFunctionURL +
-          'code=' +
           readToReadMeKeyAcessKey +
           '&teamName=' +
           encodeURIComponent(teamName) +
