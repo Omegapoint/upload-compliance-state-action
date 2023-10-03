@@ -23,13 +23,13 @@ Run the command below from the root.
 npm install
 ```
 
-By first running `npm install` in the root you get the linting and format rules downloaded. So, every time you make a commit, a pre-hook will run to validate the rules. If there are any violation you will se an error or a warning in the terminal. Read more [here](/LinitingAndFormat.md) To fix format warnings run the following command from the **root**:
+By first running npm install in the root you get the linting and format dependencies downloaded. To enable so that every time you make a commit, a pre-hook will run to validate the rules read more [here](/LinitingAndFormat.md). To fix format warnings manually run the following command from the **root**:
 
 ```bash
 npm run format:write
 ```
 
-Start developing and create tests, to run your test run: `npm run test`. When pushing the code the repository the workflow will build and push your code to the repository. 
+Start developing and create tests, to run your test run: `npm run test`. When pushing the code to the repository and creating a pull request a workflow will automatically be triggered and all the cydig actions (compliance-action, azure-compliance-action and upload-compliance-action) and all the tests will be executed in the test.yml workflow. 
 
 ### How to trigger the dev-function for upload-compliance-state in the test workflow
 1. Ensure that the following secrets have been created with values from the dev environment:
@@ -63,3 +63,8 @@ The ResponseBody class holds all the badges/controls that will be uploaded to th
 1. Add a field in the ResponseBody.
 2. Implement a method in the ResponseBodyBuilder to add the value to the ResponseBody.
 3. Add your newly created method to the method chain in the BodyBuilder under ResponseBodyBuilder.
+
+## Creating a release for the action
+At cydig, we follow [Semantic Versioning](https://semver.org/) for our action releases. Practically, this means that when you're developing and creating a pull request (PR), you can assign one of three labels to the PR: Major, Minor, or Patch. These labels correspond to version numbers in the format vX.Y.Z, where X is the major version, Y is the minor version, and Z is the patch version.For example, if you add the "Patch" label to your PR, and it's approved and merged, a workflow will automatically run to create a release for the action. Here's an illustration of how the version number would change before and after the PR:
+* Version before PR: v1.0.1
+* Version after PR: v1.0.2
