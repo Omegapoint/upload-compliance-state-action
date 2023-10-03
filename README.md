@@ -1,3 +1,14 @@
+[![OP Compliance Dashboard](https://img.shields.io/badge/OP%20Compliance%20Dashboard-click%20here-blue)](https://cydig.omegapoint.cloud/cydig)<br/><br/>
+![Timestamp](https://img.shields.io/endpoint?url=https%3A%2F%2Ffunc-cydig-comp-state-prod.azurewebsites.net%2Fapi%2FReadToReadme%3Fcode%3DxaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX%26teamName%3DCyDig%26teamProjectName%3DCyDig%26codeRepositoryName%3Dcydig-upload-compliance-action%26stateType%3Dtimestamp)<br/><br/>
+![threatModelingDate](https://img.shields.io/endpoint?url=https%3A%2F%2Ffunc-cydig-comp-state-prod.azurewebsites.net%2Fapi%2FReadToReadme%3Fcode%3DxaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX%26teamName%3DCyDig%26teamProjectName%3DCyDig%26codeRepositoryName%3Dcydig-upload-compliance-action%26stateType%3DthreatModelingDate)<br/>
+![numberOfReviewers](https://img.shields.io/endpoint?url=https%3A%2F%2Ffunc-cydig-comp-state-prod.azurewebsites.net%2Fapi%2FReadToReadme%3Fcode%3DxaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX%26teamName%3DCyDig%26teamProjectName%3DCyDig%26codeRepositoryName%3Dcydig-upload-compliance-action%26stateType%3DnumberOfReviewers)<br/>
+[![secureScore](https://img.shields.io/endpoint?url=https%3A%2F%2Ffunc-cydig-comp-state-prod.azurewebsites.net%2Fapi%2FReadToReadme%3Fcode%3DxaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX%26teamName%3DCyDig%26teamProjectName%3DCyDig%26codeRepositoryName%3Dcydig-upload-compliance-action%26stateType%3DsecureScore)](https://portal.azure.com/#view/Microsoft_Azure_Security/RecommendationsBladeV2/subscriptionIds~/%5B%2215c6235f-9e0f-4073-baf4-4fd0a7913d76%22%5D/source/SecurityPosture_ViewRecommendation)<br/>
+[![allowedLocationPolicy](https://img.shields.io/endpoint?url=https%3A%2F%2Ffunc-cydig-comp-state-prod.azurewebsites.net%2Fapi%2FReadToReadme%3Fcode%3DxaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX%26teamName%3DCyDig%26teamProjectName%3DCyDig%26codeRepositoryName%3Dcydig-upload-compliance-action%26stateType%3DallowedLocationPolicy)](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyMenuBlade/~/Compliance)<br/>
+![pentestDate](https://img.shields.io/endpoint?url=https%3A%2F%2Ffunc-cydig-comp-state-prod.azurewebsites.net%2Fapi%2FReadToReadme%3Fcode%3DxaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX%26teamName%3DCyDig%26teamProjectName%3DCyDig%26codeRepositoryName%3Dcydig-upload-compliance-action%26stateType%3DpentestDate)<br/>
+![numberOfDeployedVMs](https://img.shields.io/endpoint?url=https%3A%2F%2Ffunc-cydig-comp-state-prod.azurewebsites.net%2Fapi%2FReadToReadme%3Fcode%3DxaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX%26teamName%3DCyDig%26teamProjectName%3DCyDig%26codeRepositoryName%3Dcydig-upload-compliance-action%26stateType%3DnumberOfDeployedVMs)<br/>
+![usersInProduction](https://img.shields.io/endpoint?url=https%3A%2F%2Ffunc-cydig-comp-state-prod.azurewebsites.net%2Fapi%2FReadToReadme%3Fcode%3DxaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX%26teamName%3DCyDig%26teamProjectName%3DCyDig%26codeRepositoryName%3Dcydig-upload-compliance-action%26stateType%3DusersInProduction)<br/>
+
+
 # Upload Compliance State Action
 
 This repository contains the upload compliance state action.
@@ -20,15 +31,27 @@ npm run format:write
 
 Start developing and create tests, to run your test run: `npm run test`. When pushing the code the repository the workflow will build and push your code to the repository. 
 
-### How to trigger the dev-function for upload-compliance-state
-1. Ensure that a secret named ```URLUPDATEDEV``` has been created. [(Read more here on how to create a GitHub secret)](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
-2. Make sure the secret is set as an environment variable ```urlUpdate``` in the workflow you are invoking.
+### How to trigger the dev-function for upload-compliance-state in the test workflow
+1. Ensure that the following secrets have been created with values from the dev environment:
+
+* AZURE_CLIENT_ID_DEV
+* AZURE_SUBSCRIPTION_ID_DEV
+* AZURE_TENANT_ID
+* URL_UPLOAD_DEV
+
+2. Make sure these secrets are called in the workflow you are using.
+For example:
 
 ```
-env:
-  urlUpdate: ${{ secrets.URLUPDATEDEV }}
+- name: 'Az CLI login'
+  uses: azure/login@v1
+  with:
+    client-id: ${{ secrets.AZURE_CLIENT_ID_DEV }}
+    tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+    subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
 ```
 
+[Read more here on how to create a GitHub secret.](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
 ### How to log the badge
 The UrlBody class contains all the badges/controls that will be logged in the workflow. The UrlBodyBuilder class is responsible for building the UrlBody. To add a badge for logging in the workflow, follow these steps:
 1. Create a corresponding field in the UrlBody.
