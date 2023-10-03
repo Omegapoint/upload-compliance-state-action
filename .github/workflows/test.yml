@@ -84,7 +84,7 @@ jobs:
      
       - name: Set dev func URL
         run: |
-          echo "urlUpdate=${{ vars.URLUPDATECOMPLIANCESTATE }}" >> $GITHUB_ENV 
+          echo "urlUpdate=${{ secrets.ULR_UPLOAD_DEV }}" >> $GITHUB_ENV 
      
       - name: 'Run Upload Action'
         uses: ./upload-action
