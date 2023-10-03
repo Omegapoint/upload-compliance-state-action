@@ -1,4 +1,4 @@
-name: test all actions
+name: Test all actions
 run-name: ${{ github.actor }} is running tests
 permissions:
   contents: read
