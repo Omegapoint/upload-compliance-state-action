@@ -45,14 +45,16 @@ export class ResponseBodyBuilder {
 
   setThreatModelingDate(
     threatModelingDate: string,
-    tmNumberOfActiveTickets: string,
-    tmNumberOfClosedTickets: string
+    tmNumberOfActiveTickets: string | undefined,
+    tmNumberOfClosedTickets: string | undefined
   ): this {
     if (!threatModelingDate) {
       return this;
     } else {
-      if ((!tmNumberOfActiveTickets && !tmNumberOfClosedTickets) || ((tmNumberOfActiveTickets && tmNumberOfClosedTickets) !== '')) {
+      if (tmNumberOfActiveTickets !== undefined) {
         this.responseBody.tmNumberOfActiveTickets = tmNumberOfActiveTickets;
+      }
+      if (tmNumberOfClosedTickets !== undefined) {
         this.responseBody.tmNumberOfClosedTickets = tmNumberOfClosedTickets;
       }
       this.responseBody.threatModelingDate = threatModelingDate;
@@ -131,15 +133,17 @@ export class ResponseBodyBuilder {
     }
   }
 
-  setPentestDate(pentestDate: string, ptNumberOfActiveTickets: string, ptNumberOfClosedTickets: string): this {
+  setPentestDate(pentestDate: string, ptNumberOfActiveTickets: string | undefined, ptNumberOfClosedTickets: string | undefined): this {
     if (!pentestDate) {
       return this;
     } else {
-      if ((!ptNumberOfActiveTickets && !ptNumberOfClosedTickets) || ((ptNumberOfActiveTickets && ptNumberOfClosedTickets) !== '')) {
-        this.responseBody.ptNumberOfActiveTickets = ptNumberOfActiveTickets;
-        this.responseBody.ptNumberOfClosedTickets = ptNumberOfClosedTickets;
+      if (ptNumberOfActiveTickets !== undefined) {
+        this.responseBody.tmNumberOfActiveTickets = ptNumberOfActiveTickets;
       }
-      this.responseBody.pentestDate = pentestDate;
+      if (ptNumberOfClosedTickets !== undefined) {
+        this.responseBody.tmNumberOfClosedTickets = ptNumberOfClosedTickets;
+      }
+      this.responseBody.threatModelingDate = pentestDate;
       return this;
     }
   }

@@ -41,11 +41,11 @@ export class BodyBuilder {
     const sastNumberOfSeverity2: string = process.env.SASTnumberOfSeverity2 || '';
     const sastNumberOfSeverity3: string = process.env.SASTnumberOfSeverity3 || '';
 
-    const tmNumberOfActiveTickets: string = process.env.tmNumberOfActiveTickets || '';
-    const tmNumberOfClosedTickets: string = process.env.tmNumberOfClosedTickets || '';
+    const tmNumberOfActiveTickets: string | undefined = process.env.tmNumberOfActiveTickets || undefined;
+    const tmNumberOfClosedTickets: string | undefined = process.env.tmNumberOfClosedTickets || undefined;
 
-    const ptNumberOfActiveTickets: string = process.env.ptNumberOfActiveTickets || '';
-    const ptNumberOfClosedTickets: string = process.env.ptNumberOfClosedTickets || '';
+    const ptNumberOfActiveTickets: string | undefined = process.env.ptNumberOfActiveTickets || undefined;
+    const ptNumberOfClosedTickets: string | undefined = process.env.ptNumberOfClosedTickets || undefined;
 
     const numUserInProdSeverity1: string = process.env.numUserInProdSeverity1 || '';
     const numUserInProdSeverity2: string = process.env.numUserInProdSeverity2 || '';
