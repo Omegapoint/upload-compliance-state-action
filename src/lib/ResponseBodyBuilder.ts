@@ -138,12 +138,12 @@ export class ResponseBodyBuilder {
       return this;
     } else {
       if (ptNumberOfActiveTickets !== undefined) {
-        this.responseBody.tmNumberOfActiveTickets = ptNumberOfActiveTickets;
+        this.responseBody.ptNumberOfActiveTickets = ptNumberOfActiveTickets;
       }
       if (ptNumberOfClosedTickets !== undefined) {
-        this.responseBody.tmNumberOfClosedTickets = ptNumberOfClosedTickets;
+        this.responseBody.ptNumberOfClosedTickets = ptNumberOfClosedTickets;
       }
-      this.responseBody.threatModelingDate = pentestDate;
+      this.responseBody.pentestDate = pentestDate;
       return this;
     }
   }
