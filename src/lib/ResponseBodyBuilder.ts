@@ -44,17 +44,15 @@ export class ResponseBodyBuilder {
   }
 
   setThreatModelingDate(
-    threatModelingDate: string,
+    threatModelingDate: string | undefined,
     tmNumberOfActiveTickets: string | undefined,
     tmNumberOfClosedTickets: string | undefined
   ): this {
     if (!threatModelingDate) {
       return this;
     } else {
-      if (tmNumberOfActiveTickets !== undefined) {
+      if (tmNumberOfActiveTickets && tmNumberOfClosedTickets) {
         this.responseBody.tmNumberOfActiveTickets = tmNumberOfActiveTickets;
-      }
-      if (tmNumberOfClosedTickets !== undefined) {
         this.responseBody.tmNumberOfClosedTickets = tmNumberOfClosedTickets;
       }
       this.responseBody.threatModelingDate = threatModelingDate;
@@ -63,9 +61,9 @@ export class ResponseBodyBuilder {
   }
 
   setNumberOfReviewers(
-    numberOfReviewers: string,
-    branchPolicyUpdateDate: string,
-    branchPolicyUpdateEmail: string
+    numberOfReviewers: string | undefined,
+    branchPolicyUpdateDate: string | undefined,
+    branchPolicyUpdateEmail: string | undefined
   ): this {
     if (!numberOfReviewers) {
       return this;
@@ -80,11 +78,11 @@ export class ResponseBodyBuilder {
   }
 
   setScaTool(
-    scaTool: string,
-    scaNumberOfSeverity1: string,
-    scaNumberOfSeverity2: string,
-    scaNumberOfSeverity3: string,
-    scaNumberOfSeverity4: string
+    scaTool: string | undefined,
+    scaNumberOfSeverity1: string | undefined,
+    scaNumberOfSeverity2: string | undefined,
+    scaNumberOfSeverity3: string | undefined,
+    scaNumberOfSeverity4: string | undefined
   ): this {
     if (!scaTool) {
       return this;
@@ -92,7 +90,7 @@ export class ResponseBodyBuilder {
       this.responseBody.scaTool = scaTool;
       return this;
     } else {
-      if (!scaNumberOfSeverity1 && !scaNumberOfSeverity2 && !scaNumberOfSeverity3 && !scaNumberOfSeverity4) {
+      if (scaNumberOfSeverity1 && scaNumberOfSeverity2 && scaNumberOfSeverity3 && scaNumberOfSeverity4) {
         this.responseBody.scaTool = scaTool;
         this.responseBody.scaNumberOfSeverity1 = scaNumberOfSeverity1;
         this.responseBody.scaNumberOfSeverity2 = scaNumberOfSeverity2;
@@ -105,7 +103,7 @@ export class ResponseBodyBuilder {
     }
   }
 
-  setSecureScore(secureScore: string): this {
+  setSecureScore(secureScore: string | undefined): this {
     if (!secureScore) {
       return this;
     } else {
@@ -115,14 +113,14 @@ export class ResponseBodyBuilder {
   }
 
   setAllowedLocationPolicy(
-    allowedLocationPolicy: string,
-    compliantResources: string,
-    nonCompliantResources: string
+    allowedLocationPolicy: string | undefined,
+    compliantResources: string | undefined,
+    nonCompliantResources: string | undefined
   ): this {
     if (!allowedLocationPolicy) {
       return this;
     } else {
-      if (compliantResources !== undefined && nonCompliantResources !== undefined) {
+      if (compliantResources && nonCompliantResources) {
         this.responseBody.allowedLocationPolicy = allowedLocationPolicy;
         this.responseBody.compliantResources = compliantResources;
         this.responseBody.nonCompliantResources = nonCompliantResources;
@@ -133,14 +131,12 @@ export class ResponseBodyBuilder {
     }
   }
 
-  setPentestDate(pentestDate: string, ptNumberOfActiveTickets: string | undefined, ptNumberOfClosedTickets: string | undefined): this {
+  setPentestDate(pentestDate: string | undefined, ptNumberOfActiveTickets: string | undefined, ptNumberOfClosedTickets: string | undefined): this {
     if (!pentestDate) {
       return this;
     } else {
-      if (ptNumberOfActiveTickets !== undefined) {
+      if (ptNumberOfActiveTickets && ptNumberOfClosedTickets) {
         this.responseBody.ptNumberOfActiveTickets = ptNumberOfActiveTickets;
-      }
-      if (ptNumberOfClosedTickets !== undefined) {
         this.responseBody.ptNumberOfClosedTickets = ptNumberOfClosedTickets;
       }
       this.responseBody.pentestDate = pentestDate;
@@ -148,46 +144,40 @@ export class ResponseBodyBuilder {
     }
   }
 
-  setNumberOfDeployedVMs(numberOfDeployedVMs: string): this {
-    if (!numberOfDeployedVMs) {
-      return this;
-    } else {
+  setNumberOfDeployedVMs(numberOfDeployedVMs: string | undefined): this {
+    if (numberOfDeployedVMs) {
       this.responseBody.numberOfDeployedVMs = numberOfDeployedVMs;
-      return this;
     }
+    return this;
   }
 
   setNumberOfHumansInSubscription(
-    numUserInProdSeverity1: string,
-    numUserInProdSeverity2: string,
-    numUserInProdSeverity3: string
+    numUserInProdSeverity1: string | undefined,
+    numUserInProdSeverity2: string | undefined,
+    numUserInProdSeverity3: string | undefined
   ): this {
-    if (!numUserInProdSeverity1 || !numUserInProdSeverity2 || !numUserInProdSeverity3) {
-      return this;
-    } else {
+    if (numUserInProdSeverity1 && numUserInProdSeverity2 && numUserInProdSeverity3) {
       this.responseBody.numUserInProdSeverity1 = numUserInProdSeverity1;
       this.responseBody.numUserInProdSeverity2 = numUserInProdSeverity2;
       this.responseBody.numUserInProdSeverity3 = numUserInProdSeverity3;
-      return this;
-    }
+    } 
+    return this;
   }
 
-  setNumberOfExposedSecrets(numberOfExposedSecrets: string): this {
-    if (!numberOfExposedSecrets) {
-      return this;
-    } else {
+  setNumberOfExposedSecrets(numberOfExposedSecrets: string | undefined): this {
+    if (numberOfExposedSecrets) {
       this.responseBody.numberOfExposedSecrets = numberOfExposedSecrets;
-      return this;
-    }
+    } 
+    return this;
   }
 
   setCodeQualityTool(
-    codeQualityTool: string,
-    cqNumberOfSeverity1: string,
-    cqNumberOfSeverity2: string,
-    cqNumberOfSeverity3: string,
-    cqNumberOfSeverity4: string,
-    cqNumberOfSeverity5: string
+    codeQualityTool: string | undefined,
+    cqNumberOfSeverity1: string | undefined,
+    cqNumberOfSeverity2: string | undefined,
+    cqNumberOfSeverity3: string | undefined,
+    cqNumberOfSeverity4: string | undefined,
+    cqNumberOfSeverity5: string | undefined
   ): this {
     if (!codeQualityTool) {
       return this;
@@ -196,11 +186,11 @@ export class ResponseBodyBuilder {
       return this;
     } else {
       if (
-        !cqNumberOfSeverity1 &&
-        !cqNumberOfSeverity2 &&
-        !cqNumberOfSeverity3 &&
-        !cqNumberOfSeverity4 &&
-        !cqNumberOfSeverity5
+        cqNumberOfSeverity1 &&
+        cqNumberOfSeverity2 &&
+        cqNumberOfSeverity3 &&
+        cqNumberOfSeverity4 &&
+        cqNumberOfSeverity5
       ) {
         this.responseBody.codeQualityTool = codeQualityTool;
         this.responseBody.cqNumberOfSeverity1 = cqNumberOfSeverity1;
@@ -216,10 +206,10 @@ export class ResponseBodyBuilder {
   }
 
   setSastTool(
-    sastTool: string,
-    sastNumberOfSeverity1: string,
-    sastNumberOfSeverity2: string,
-    sastNumberOfSeverity3: string
+    sastTool: string | undefined,
+    sastNumberOfSeverity1: string | undefined,
+    sastNumberOfSeverity2: string | undefined,
+    sastNumberOfSeverity3: string | undefined
   ): this {
     if (!sastTool) {
       return this;
@@ -227,7 +217,7 @@ export class ResponseBodyBuilder {
       this.responseBody.sastTool = sastTool;
       return this;
     } else {
-      if (!sastNumberOfSeverity3 && !sastNumberOfSeverity2 && !sastNumberOfSeverity1) {
+      if (sastNumberOfSeverity3 && sastNumberOfSeverity2 && sastNumberOfSeverity1) {
         this.responseBody.sastTool = sastTool;
         this.responseBody.sastNumberOfSeverity3 = sastNumberOfSeverity3;
         this.responseBody.sastNumberOfSeverity2 = sastNumberOfSeverity2;
