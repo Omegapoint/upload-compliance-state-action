@@ -7,7 +7,7 @@ export class UrlBodyBuilder {
     this.url = new UrlBody();
   }
 
-  setThreatModelingDate(threatModelingDate: string): this {
+  setThreatModelingDate(threatModelingDate: string | undefined ): this {
     if (!threatModelingDate) {
       return this;
     } else {
@@ -16,7 +16,7 @@ export class UrlBodyBuilder {
     }
   }
 
-  setNumberOfReviewers(numberOfReviewers: string): this {
+  setNumberOfReviewers(numberOfReviewers: string | undefined): this {
     if (!numberOfReviewers) {
       return this;
     } else {
@@ -25,7 +25,7 @@ export class UrlBodyBuilder {
     }
   }
 
-  setScaTool(scaTool: string): this {
+  setScaTool(scaTool: string | undefined): this {
     if (!scaTool) {
       return this;
     } else {
@@ -34,7 +34,7 @@ export class UrlBodyBuilder {
     }
   }
 
-  setSastTool(sastTool: string): this {
+  setSastTool(sastTool: string | undefined): this {
     if (!sastTool) {
       return this;
     } else {
@@ -43,7 +43,7 @@ export class UrlBodyBuilder {
     }
   }
 
-  setSecureScore(secureScore: string): this {
+  setSecureScore(secureScore: string | undefined): this {
     if (!secureScore) {
       return this;
     } else {
@@ -52,7 +52,7 @@ export class UrlBodyBuilder {
     }
   }
 
-  setAllowedLocationPolicy(allowedLocationPolicy: string): this {
+  setAllowedLocationPolicy(allowedLocationPolicy: string | undefined): this {
     if (!allowedLocationPolicy) {
       return this;
     } else {
@@ -61,7 +61,7 @@ export class UrlBodyBuilder {
     }
   }
 
-  setPentestDate(pentestDate: string): this {
+  setPentestDate(pentestDate: string | undefined): this {
     if (!pentestDate) {
       return this;
     } else {
@@ -70,7 +70,7 @@ export class UrlBodyBuilder {
     }
   }
 
-  setNumberOfDeployedVMs(numberOfDeployedVMs: string): this {
+  setNumberOfDeployedVMs(numberOfDeployedVMs: string | undefined): this {
     if (!numberOfDeployedVMs) {
       return this;
     } else {
@@ -80,9 +80,9 @@ export class UrlBodyBuilder {
   }
 
   setNumberOfHumansInSubscription(
-    numUserInProdSeverity1: string,
-    numUserInProdSeverity2: string,
-    numUserInProdSeverity3: string
+    numUserInProdSeverity1: string | undefined,
+    numUserInProdSeverity2: string | undefined,
+    numUserInProdSeverity3: string | undefined
   ): this {
     if (!numUserInProdSeverity1 || !numUserInProdSeverity2 || !numUserInProdSeverity3) {
       return this;
@@ -92,7 +92,7 @@ export class UrlBodyBuilder {
     }
   }
 
-  setNumberOfExposedSecrets(numberOfExposedSecrets: string): this {
+  setNumberOfExposedSecrets(numberOfExposedSecrets: string | undefined): this {
     if (!numberOfExposedSecrets) {
       return this;
     } else {
@@ -101,7 +101,7 @@ export class UrlBodyBuilder {
     }
   }
 
-  setCodeQualityTool(codeQualityTool: string): this {
+  setCodeQualityTool(codeQualityTool: string | undefined): this {
     if (!codeQualityTool) {
       return this;
     } else {
