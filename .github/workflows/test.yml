@@ -76,11 +76,11 @@ jobs:
         uses: ./azure-compliance-action
         with:
           subscription: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
-          cydigConfigPath: ${{ github.workspace }}/azure-compliance-action/src/cydigconfig.json
+          cydigConfigPath: ${{ github.workspace }}/azure-compliance-action/src/cydigConfig.json
       - name: 'Run Compliance Controls'
         uses: ./compliance-action
         with:
-          cydigConfigPath: ${{ github.workspace }}/compliance-action/src/cydigconfig.json
+          cydigConfigPath: ${{ github.workspace }}/compliance-action/src/cydigConfig.json
           PAT-token: ${{ secrets.MY_GITHUB_PAT }}
      
       - name: Set dev func URL
