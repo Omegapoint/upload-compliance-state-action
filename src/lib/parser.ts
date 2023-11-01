@@ -1,4 +1,5 @@
 export const parseToNumberOrUndefined = (input: string): number | undefined => {
-    return input !== null && input !== undefined && !isNaN(Number(input)) ? parseInt(input) : undefined;
+    const number: number = Number(input);
+    return input === null || input === undefined || input === ' ' || isNaN(number) ? undefined : parseInt(input);
 }
 
