@@ -1,26 +1,36 @@
 import { BodyBuilder } from './BodyBuilder';
 import axios from 'axios';
-import { ResponseBody } from './ResponseBody';
+import { RequestBody } from './RequestBody';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as core from '@actions/core';
 
 export class ComplianceStateService {
+  private updateKey: string
+  private baseUrl: string
+  constructor() {
+    if (!process.env?.updateKey) {
+      throw new Error('Could not find environment variable updateKey');
+    }
+    if (!process.env?.urlUpdate) {
+      throw new Error('Could not find environment variable urlUpdate');
+    }
+    this.updateKey = process.env.updateKey;
+    this.baseUrl = process.env.urlUpdate;
+  }
   public async createAndSendComplianceState(
     teamName: string,
     codeRepositoryName: string,
     subscriptionId: string
   ): Promise<void> {
-    // POST-request to Azure function
-    const updateKey: string = process.env.updateKey || '';
-    //Please update the func url if there are any changes to the infrastructure.
-    const urlUpdate: string = process.env.urlUpdate || 'https://func-cydig-comp-state-prod.azurewebsites.net/api/UpdateComplianceState?code=' + updateKey;
     const bodyBuilder: BodyBuilder = new BodyBuilder();
-    const responseBody: ResponseBody = bodyBuilder.createBody(
+    const responseBody: RequestBody = bodyBuilder.createBody(
       teamName,
       codeRepositoryName,
       subscriptionId
     );
+
+    const urlUpdate: string = `${this.baseUrl}/teams/${teamName}/repositories?code=${this.updateKey}`;
 
     await axios
       .post(urlUpdate, responseBody, {

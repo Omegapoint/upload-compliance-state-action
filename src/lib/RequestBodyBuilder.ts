@@ -1,17 +1,18 @@
-import { ResponseBody } from './ResponseBody';
+import { RequestBody } from './RequestBody';
+import { parseToNumberOrUndefined } from './parser';
 
-export class ResponseBodyBuilder {
-  responseBody: ResponseBody;
+export class RequestBodyBuilder {
+  private requestBody: RequestBody;
 
   constructor() {
-    this.responseBody = new ResponseBody();
+    this.requestBody = new RequestBody();
   }
 
   setTeamName(teamName: string): this {
     if (!teamName) {
       return this;
     } else {
-      this.responseBody.teamName = teamName;
+      this.requestBody.teamProjectName = teamName;
       return this;
     }
   }
@@ -20,7 +21,7 @@ export class ResponseBodyBuilder {
     if (!teamProjectName) {
       return this;
     } else {
-      this.responseBody.teamProjectName = teamProjectName;
+      this.requestBody.teamProjectName = teamProjectName;
       return this;
     }
   }
@@ -29,7 +30,7 @@ export class ResponseBodyBuilder {
     if (!codeRepositoryName) {
       return this;
     } else {
-      this.responseBody.codeRepositoryName = codeRepositoryName;
+      this.requestBody.repositoryName = codeRepositoryName;
       return this;
     }
   }
@@ -38,7 +39,7 @@ export class ResponseBodyBuilder {
     if (!subscriptionId) {
       return this;
     } else {
-      this.responseBody.subscriptionId = subscriptionId;
+      this.requestBody.subscriptionId = subscriptionId;
       return this;
     }
   }
@@ -52,10 +53,10 @@ export class ResponseBodyBuilder {
       return this;
     } else {
       if (tmNumberOfActiveTickets && tmNumberOfClosedTickets) {
-        this.responseBody.tmNumberOfActiveTickets = tmNumberOfActiveTickets;
-        this.responseBody.tmNumberOfClosedTickets = tmNumberOfClosedTickets;
+        this.requestBody.tmNumberOfActiveTickets = parseToNumberOrUndefined(tmNumberOfActiveTickets);
+        this.requestBody.tmNumberOfClosedTickets = parseToNumberOrUndefined(tmNumberOfClosedTickets);
       }
-      this.responseBody.threatModelingDate = threatModelingDate;
+      this.requestBody.threatModelingDate = threatModelingDate;
       return this;
     }
   }
@@ -68,10 +69,10 @@ export class ResponseBodyBuilder {
     if (!numberOfReviewers) {
       return this;
     } else {
-      this.responseBody.numberOfReviewers = numberOfReviewers;
+      this.requestBody.numberOfReviewers = parseToNumberOrUndefined(numberOfReviewers);
       if (branchPolicyUpdateDate && branchPolicyUpdateEmail) {
-        this.responseBody.branchPolicyUpdateDate = branchPolicyUpdateDate;
-        this.responseBody.branchPolicyUpdateEmail = branchPolicyUpdateEmail;
+        this.requestBody.branchPolicyUpdateDate = branchPolicyUpdateDate;
+        this.requestBody.branchPolicyUpdateEmail = branchPolicyUpdateEmail;
       }
       return this;
     }
@@ -87,17 +88,17 @@ export class ResponseBodyBuilder {
     if (!scaTool) {
       return this;
     } else if (scaTool === 'not specified') {
-      this.responseBody.scaTool = scaTool;
+      this.requestBody.scaTool = scaTool;
       return this;
     } else {
       if (scaNumberOfSeverity1 && scaNumberOfSeverity2 && scaNumberOfSeverity3 && scaNumberOfSeverity4) {
-        this.responseBody.scaTool = scaTool;
-        this.responseBody.scaNumberOfSeverity1 = scaNumberOfSeverity1;
-        this.responseBody.scaNumberOfSeverity2 = scaNumberOfSeverity2;
-        this.responseBody.scaNumberOfSeverity3 = scaNumberOfSeverity3;
-        this.responseBody.scaNumberOfSeverity4 = scaNumberOfSeverity4;
+        this.requestBody.scaTool = scaTool;
+        this.requestBody.scaNumberOfSeverity1 = parseToNumberOrUndefined(scaNumberOfSeverity1);
+        this.requestBody.scaNumberOfSeverity2 = parseToNumberOrUndefined(scaNumberOfSeverity2);
+        this.requestBody.scaNumberOfSeverity3 = parseToNumberOrUndefined(scaNumberOfSeverity3);
+        this.requestBody.scaNumberOfSeverity4 = parseToNumberOrUndefined(scaNumberOfSeverity4);
       } else {
-        this.responseBody.scaTool = scaTool; //one or many vulnerabilities are undefined, maybe print feedback in pipeline
+        this.requestBody.scaTool = scaTool; //one or many vulnerabilities are undefined, maybe print feedback in pipeline
       }
       return this;
     }
@@ -107,7 +108,7 @@ export class ResponseBodyBuilder {
     if (!secureScore) {
       return this;
     } else {
-      this.responseBody.secureScore = secureScore;
+      this.requestBody.secureScore = parseToNumberOrUndefined(secureScore);
       return this;
     }
   }
@@ -121,11 +122,11 @@ export class ResponseBodyBuilder {
       return this;
     } else {
       if (compliantResources && nonCompliantResources) {
-        this.responseBody.allowedLocationPolicy = allowedLocationPolicy;
-        this.responseBody.compliantResources = compliantResources;
-        this.responseBody.nonCompliantResources = nonCompliantResources;
+        this.requestBody.allowedLocationPolicy = allowedLocationPolicy;
+        this.requestBody.compliantResources = parseToNumberOrUndefined(compliantResources);
+        this.requestBody.nonCompliantResources = parseToNumberOrUndefined(nonCompliantResources);
       } else {
-        this.responseBody.allowedLocationPolicy = allowedLocationPolicy; //one or both resources are undefined, maybe print feedback in pipeline
+        this.requestBody.allowedLocationPolicy = allowedLocationPolicy; //one or both resources are undefined, maybe print feedback in pipeline
       }
       return this;
     }
@@ -136,17 +137,17 @@ export class ResponseBodyBuilder {
       return this;
     } else {
       if (ptNumberOfActiveTickets && ptNumberOfClosedTickets) {
-        this.responseBody.ptNumberOfActiveTickets = ptNumberOfActiveTickets;
-        this.responseBody.ptNumberOfClosedTickets = ptNumberOfClosedTickets;
+        this.requestBody.ptNumberOfActiveTickets = parseToNumberOrUndefined(ptNumberOfActiveTickets);
+        this.requestBody.ptNumberOfClosedTickets = parseToNumberOrUndefined(ptNumberOfClosedTickets);
       }
-      this.responseBody.pentestDate = pentestDate;
+      this.requestBody.pentestDate = pentestDate;
       return this;
     }
   }
 
   setNumberOfDeployedVMs(numberOfDeployedVMs: string | undefined): this {
     if (numberOfDeployedVMs) {
-      this.responseBody.numberOfDeployedVMs = numberOfDeployedVMs;
+      this.requestBody.numberOfDeployedVMs = parseToNumberOrUndefined(numberOfDeployedVMs);
     }
     return this;
   }
@@ -157,17 +158,17 @@ export class ResponseBodyBuilder {
     numUserInProdSeverity3: string | undefined
   ): this {
     if (numUserInProdSeverity1 && numUserInProdSeverity2 && numUserInProdSeverity3) {
-      this.responseBody.numUserInProdSeverity1 = numUserInProdSeverity1;
-      this.responseBody.numUserInProdSeverity2 = numUserInProdSeverity2;
-      this.responseBody.numUserInProdSeverity3 = numUserInProdSeverity3;
-    } 
+      this.requestBody.numUserInProdSeverity1 = parseToNumberOrUndefined(numUserInProdSeverity1);
+      this.requestBody.numUserInProdSeverity2 = parseToNumberOrUndefined(numUserInProdSeverity2);
+      this.requestBody.numUserInProdSeverity3 = parseToNumberOrUndefined(numUserInProdSeverity3);
+    }
     return this;
   }
 
   setNumberOfExposedSecrets(numberOfExposedSecrets: string | undefined): this {
     if (numberOfExposedSecrets) {
-      this.responseBody.numberOfExposedSecrets = numberOfExposedSecrets;
-    } 
+      this.requestBody.numberOfExposedSecrets = parseToNumberOrUndefined(numberOfExposedSecrets);
+    }
     return this;
   }
 
@@ -182,7 +183,7 @@ export class ResponseBodyBuilder {
     if (!codeQualityTool) {
       return this;
     } else if (codeQualityTool === 'not specified') {
-      this.responseBody.codeQualityTool = codeQualityTool;
+      this.requestBody.codeQualityTool = codeQualityTool;
       return this;
     } else {
       if (
@@ -192,14 +193,14 @@ export class ResponseBodyBuilder {
         cqNumberOfSeverity4 &&
         cqNumberOfSeverity5
       ) {
-        this.responseBody.codeQualityTool = codeQualityTool;
-        this.responseBody.cqNumberOfSeverity1 = cqNumberOfSeverity1;
-        this.responseBody.cqNumberOfSeverity2 = cqNumberOfSeverity2;
-        this.responseBody.cqNumberOfSeverity3 = cqNumberOfSeverity3;
-        this.responseBody.cqNumberOfSeverity4 = cqNumberOfSeverity4;
-        this.responseBody.cqNumberOfSeverity5 = cqNumberOfSeverity5;
+        this.requestBody.codeQualityTool = codeQualityTool;
+        this.requestBody.cqNumberOfSeverity1 = parseToNumberOrUndefined(cqNumberOfSeverity1);
+        this.requestBody.cqNumberOfSeverity2 = parseToNumberOrUndefined(cqNumberOfSeverity2);
+        this.requestBody.cqNumberOfSeverity3 = parseToNumberOrUndefined(cqNumberOfSeverity3);
+        this.requestBody.cqNumberOfSeverity4 = parseToNumberOrUndefined(cqNumberOfSeverity4);
+        this.requestBody.cqNumberOfSeverity5 = parseToNumberOrUndefined(cqNumberOfSeverity5);
       } else {
-        this.responseBody.codeQualityTool = codeQualityTool; //one or many vulnerabilities are undefined, maybe print feedback in pipeline
+        this.requestBody.codeQualityTool = codeQualityTool; //one or many vulnerabilities are undefined, maybe print feedback in pipeline
       }
       return this;
     }
@@ -214,22 +215,22 @@ export class ResponseBodyBuilder {
     if (!sastTool) {
       return this;
     } else if (sastTool === 'not specified') {
-      this.responseBody.sastTool = sastTool;
+      this.requestBody.sastTool = sastTool;
       return this;
     } else {
       if (sastNumberOfSeverity3 && sastNumberOfSeverity2 && sastNumberOfSeverity1) {
-        this.responseBody.sastTool = sastTool;
-        this.responseBody.sastNumberOfSeverity3 = sastNumberOfSeverity3;
-        this.responseBody.sastNumberOfSeverity2 = sastNumberOfSeverity2;
-        this.responseBody.sastNumberOfSeverity1 = sastNumberOfSeverity1;
+        this.requestBody.sastTool = sastTool;
+        this.requestBody.sastNumberOfSeverity3 = parseToNumberOrUndefined(sastNumberOfSeverity3);
+        this.requestBody.sastNumberOfSeverity2 = parseToNumberOrUndefined(sastNumberOfSeverity2);
+        this.requestBody.sastNumberOfSeverity1 = parseToNumberOrUndefined(sastNumberOfSeverity1);
       } else {
-        this.responseBody.sastTool = sastTool; //one or many vulnerabilities are undefined, maybe print feedback in pipeline
+        this.requestBody.sastTool = sastTool; //one or many vulnerabilities are undefined, maybe print feedback in pipeline
       }
       return this;
     }
   }
 
-  build(): ResponseBody {
-    return this.responseBody;
+  build(): RequestBody {
+    return this.requestBody;
   }
 }
