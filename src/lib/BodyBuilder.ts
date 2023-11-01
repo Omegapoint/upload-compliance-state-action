@@ -1,13 +1,13 @@
 import { UrlBuilder } from './UrlBuilder';
-import { ResponseBodyBuilder } from './ResponseBodyBuilder';
+import { RequestBodyBuilder } from './RequestBodyBuilder';
 import { UrlBodyBuilder } from './UrlBodyBuilder';
 import { UrlBody } from './UrlBody';
-import { ResponseBody } from './ResponseBody';
+import { RequestBody } from './RequestBody';
 
 let urls: string = '';
 
 export class BodyBuilder {
-  createBody(teamName: string, codeRepositoryName: string, subscriptionId: string): ResponseBody {
+  createBody(teamName: string, codeRepositoryName: string, subscriptionId: string): RequestBody {
     const teamProjectName: string = teamName;
     const allowedLocationPolicy: string | undefined = process.env?.allowedLocationPolicy;
     const secureScore: string | undefined = process.env?.secureScore;
@@ -34,7 +34,7 @@ export class BodyBuilder {
     const cqNumberOfSeverity1: string | undefined = process.env?.CQnumberOfSeverity1;
     const cqNumberOfSeverity2: string | undefined = process.env?.CQnumberOfSeverity2;
     const cqNumberOfSeverity3: string | undefined = process.env?.CQnumberOfSeverity3;
-    const cqNumberOfSeverity4: string| undefined = process.env?.CQnumberOfSeverity4;
+    const cqNumberOfSeverity4: string | undefined = process.env?.CQnumberOfSeverity4;
     const cqNumberOfSeverity5: string | undefined = process.env?.CQnumberOfSeverity5;
 
     const sastNumberOfSeverity1: string | undefined = process.env?.SASTnumberOfSeverity1;
@@ -75,7 +75,7 @@ export class BodyBuilder {
       urlBody
     );
 
-    const responseBody: ResponseBody = new ResponseBodyBuilder()
+    const requestBody: RequestBody = new RequestBodyBuilder()
       .setTeamName(teamName)
       .setTeamProjectName(teamProjectName)
       .setCodeRepositoryName(codeRepositoryName)
@@ -99,7 +99,7 @@ export class BodyBuilder {
         cqNumberOfSeverity5
       )
       .build();
-    return responseBody;
+    return requestBody;
   }
 
   getUrls(): string {
