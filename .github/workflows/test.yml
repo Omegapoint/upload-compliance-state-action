@@ -86,6 +86,7 @@ jobs:
       - name: Set dev func URL
         run: |
           echo "urlUpdate=${{ secrets.URL_UPLOAD_DEV }}" >> $GITHUB_ENV 
+          echo "updateKey=${{ secrets.CYDIG_API_KEY }}" >> $GITHUB_ENV 
      
       - name: 'Run Upload Action'
         uses: ./upload-action
