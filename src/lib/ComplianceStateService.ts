@@ -12,10 +12,12 @@ export class ComplianceStateService {
     if (!process.env?.updateKey) {
       throw new Error('Could not find environment variable updateKey');
     }
-    if (!process.env?.urlUpdate) {
-      throw new Error('Could not find environment variable urlUpdate');
-    }
     this.updateKey = process.env.updateKey;
+    
+    if (!process.env?.urlUpdate) {
+      this.baseUrl = 'https://func-cydig-upload-comp-state-prod.azurewebsites.net/api';
+      return;
+    }
     this.baseUrl = process.env.urlUpdate;
   }
   public async createAndSendComplianceState(
