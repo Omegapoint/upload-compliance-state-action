@@ -1,5 +1,9 @@
 export class RequestBody {
+  constructor() {
+    this.source = 'GitHub';
+  }
   repositoryName?: string;
+  source: string;
   teamProjectName?: string;
   subscriptionId?: string;
   numberOfReviewers?: number;
