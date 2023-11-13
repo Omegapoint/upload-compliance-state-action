@@ -1,5 +1,5 @@
 
-export class UrlBuilder {
+export class UrlBuilder {  
   static createUrl(
     teamName: string,
     teamProjectName: string,
@@ -7,13 +7,15 @@ export class UrlBuilder {
     subscriptionId: string,
     states: object
   ): string {
+    
     //Please update the url if there are any changes to the infrastructure.
     const urlDashboard: string = "https://cydig.omegapoint.cloud/";
     //Please update the func url if there are any changes to the infrastructure.
     const readFunctionURL: string = 'https://func-cydig-comp-state-prod.azurewebsites.net/api/ReadToReadme?code=';
     //Please update the url if there are any changes to the infrastructure.
     const readToReadMeKeyAcessKey: string = 'xaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX';
-  
+    const source: string = 'GitHub';
+
     let urls: string = '';
     let encodedURL: string;
     let singleBadgeURL: string;
@@ -27,16 +29,7 @@ export class UrlBuilder {
 
     //timestamp
     encodedURL = encodeURIComponent(
-      readFunctionURL +
-        readToReadMeKeyAcessKey +
-        '&teamName=' +
-        encodeURIComponent(teamName) +
-        '&teamProjectName=' +
-        encodeURIComponent(teamProjectName) +
-        '&codeRepositoryName=' +
-        encodeURIComponent(codeRepositoryName) +
-        '&stateType=' +
-        'timestamp'
+      `${readFunctionURL}/teams/${teamName}/sources/${source}/projects/${teamProjectName}/repositories/${codeRepositoryName}/controls/timestamp?code=${badgeAccessKey}`
     );
     singleBadgeURL = '![' + 'Timestamp' + '](https://img.shields.io/endpoint?url=' + encodedURL + ')';
     urls = urls + singleBadgeURL + '<br/>' + '<br/>' + '\n';
