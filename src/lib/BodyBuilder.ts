@@ -66,7 +66,7 @@ export class BodyBuilder {
       .setPentestDate(pentestDate)
       .build();
 
-    urls = UrlBuilder.createUrl(
+    urls = new UrlBuilder().createUrl(
       // eslint-disable-line
       teamName,
       teamProjectName,
