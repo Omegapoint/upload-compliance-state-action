@@ -1,19 +1,32 @@
 
 export class UrlBuilder {
-  static createUrl(
+
+  private urlDashboard: string;
+  private urlBadgeService: string;
+  private accessKeyBadgeService: string;
+  private source: string;
+
+  constructor() {
+
+    this.urlDashboard = process.env?.urlDashboard ? process.env?.urlDashboard : 'https://cydig.omegapoint.cloud/';
+
+    this.urlBadgeService = process.env?.urlBadgeService ? process.env?.urlBadgeService : 'https://func-cydig-badge-service-prod.azurewebsites.net/api';
+
+    if (!process.env?.accessKeyBadgeService) {
+      throw new Error('Could not find environment variable accessKeyBadgeService');
+    }
+    this.accessKeyBadgeService = process.env.accessKeyBadgeService;
+    this.source = 'GitHub';
+
+  }
+  public createUrl(
     teamName: string,
     teamProjectName: string,
     codeRepositoryName: string,
     subscriptionId: string,
     states: object
   ): string {
-    //Please update the url if there are any changes to the infrastructure.
-    const urlDashboard: string = "https://cydig.omegapoint.cloud/";
-    //Please update the func url if there are any changes to the infrastructure.
-    const readFunctionURL: string = 'https://func-cydig-comp-state-prod.azurewebsites.net/api/ReadToReadme?code=';
-    //Please update the url if there are any changes to the infrastructure.
-    const readToReadMeKeyAcessKey: string = 'xaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX';
-  
+
     let urls: string = '';
     let encodedURL: string;
     let singleBadgeURL: string;
@@ -22,21 +35,12 @@ export class UrlBuilder {
     //OP Dashboard
     encodedURL = encodeURIComponent('OP Compliance Dashboard-click here-blue');
     singleBadgeURL = '[![' + 'OP Compliance Dashboard' + '](https://img.shields.io/badge/' + encodedURL + ')]';
-    redirectLink = '(' + urlDashboard + encodeURIComponent(teamName.toLowerCase()) + ')';
+    redirectLink = '(' + this.urlDashboard + encodeURIComponent(teamName.toLowerCase()) + ')';
     urls = urls + singleBadgeURL + redirectLink + '<br/>' + '<br/>' + '\n';
 
     //timestamp
     encodedURL = encodeURIComponent(
-      readFunctionURL +
-        readToReadMeKeyAcessKey +
-        '&teamName=' +
-        encodeURIComponent(teamName) +
-        '&teamProjectName=' +
-        encodeURIComponent(teamProjectName) +
-        '&codeRepositoryName=' +
-        encodeURIComponent(codeRepositoryName) +
-        '&stateType=' +
-        'timestamp'
+      `${this.urlBadgeService}/teams/${teamName}/sources/${this.source}/projects/${teamProjectName}/repositories/${codeRepositoryName}/controls/timestamp?code=${this.accessKeyBadgeService}`
     );
     singleBadgeURL = '![' + 'Timestamp' + '](https://img.shields.io/endpoint?url=' + encodedURL + ')';
     urls = urls + singleBadgeURL + '<br/>' + '<br/>' + '\n';
@@ -44,16 +48,7 @@ export class UrlBuilder {
     for (const state of Object.keys(states)) {
       redirectLink = '';
       encodedURL = encodeURIComponent(
-        readFunctionURL +
-          readToReadMeKeyAcessKey +
-          '&teamName=' +
-          encodeURIComponent(teamName) +
-          '&teamProjectName=' +
-          encodeURIComponent(teamProjectName) +
-          '&codeRepositoryName=' +
-          encodeURIComponent(codeRepositoryName) +
-          '&stateType=' +
-          state
+        `${this.urlBadgeService}/teams/${teamName}/sources/${this.source}/projects/${teamProjectName}/repositories/${codeRepositoryName}/controls/${state}?code=${this.accessKeyBadgeService}`
       );
       singleBadgeURL = '[![' + state + '](https://img.shields.io/endpoint?url=' + encodedURL + ')]';
 
