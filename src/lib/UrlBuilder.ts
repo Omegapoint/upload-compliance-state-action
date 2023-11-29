@@ -3,7 +3,6 @@ export class UrlBuilder {
 
   private urlDashboard: string;
   private urlBadgeService: string;
-  private accessKeyBadgeService: string;
   private source: string;
 
   constructor() {
@@ -12,10 +11,6 @@ export class UrlBuilder {
 
     this.urlBadgeService = process.env?.urlBadgeService ? process.env?.urlBadgeService : 'https://func-cydig-badge-service-prod.azurewebsites.net/api';
 
-    if (!process.env?.accessKeyBadgeService) {
-      throw new Error('Could not find environment variable accessKeyBadgeService');
-    }
-    this.accessKeyBadgeService = process.env.accessKeyBadgeService;
     this.source = 'GitHub';
 
   }
@@ -25,7 +20,13 @@ export class UrlBuilder {
     codeRepositoryName: string,
     subscriptionId: string,
     states: object
-  ): string {
+  ): string | undefined {
+
+    if (!process.env?.accessKeyBadgeService) {
+      return undefined;
+    }
+
+    const accessKeyBadgeService: string = process.env.accessKeyBadgeService;
 
     let urls: string = '';
     let encodedURL: string;
@@ -40,7 +41,7 @@ export class UrlBuilder {
 
     //timestamp
     encodedURL = encodeURIComponent(
-      `${this.urlBadgeService}/teams/${teamName}/sources/${this.source}/projects/${teamProjectName}/repositories/${codeRepositoryName}/controls/timestamp?code=${this.accessKeyBadgeService}`
+      `${this.urlBadgeService}/teams/${teamName}/sources/${this.source}/projects/${teamProjectName}/repositories/${codeRepositoryName}/controls/timestamp?code=${accessKeyBadgeService}`
     );
     singleBadgeURL = '![' + 'Timestamp' + '](https://img.shields.io/endpoint?url=' + encodedURL + ')';
     urls = urls + singleBadgeURL + '<br/>' + '<br/>' + '\n';
@@ -48,7 +49,7 @@ export class UrlBuilder {
     for (const state of Object.keys(states)) {
       redirectLink = '';
       encodedURL = encodeURIComponent(
-        `${this.urlBadgeService}/teams/${teamName}/sources/${this.source}/projects/${teamProjectName}/repositories/${codeRepositoryName}/controls/${state}?code=${this.accessKeyBadgeService}`
+        `${this.urlBadgeService}/teams/${teamName}/sources/${this.source}/projects/${teamProjectName}/repositories/${codeRepositoryName}/controls/${state}?code=${accessKeyBadgeService}`
       );
       singleBadgeURL = '[![' + state + '](https://img.shields.io/endpoint?url=' + encodedURL + ')]';
 

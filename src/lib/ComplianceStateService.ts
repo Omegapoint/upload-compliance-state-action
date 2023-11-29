@@ -13,7 +13,7 @@ export class ComplianceStateService {
       throw new Error('Could not find environment variable updateKey');
     }
     this.updateKey = process.env.updateKey;
-    
+
     if (!process.env?.urlUpdate) {
       this.baseUrl = 'https://func-cydig-upload-comp-state-prod.azurewebsites.net/api';
       return;
@@ -42,11 +42,16 @@ export class ComplianceStateService {
         },
       })
       .then(() => {
-        const urls: string = bodyBuilder.getUrls();
-        const outputFilePath: string = path.join(__dirname, 'README_badges.txt'); // Output file in the same directory as the script
-        fs.writeFileSync(outputFilePath, urls, 'utf-8');
-        core.setOutput("readme-badges", urls);
-        console.log(urls);
+        const urls: string | undefined = bodyBuilder.getUrls();
+        if (urls) {
+          const outputFilePath: string = path.join(__dirname, 'README_badges.txt'); // Output file in the same directory as the script
+          fs.writeFileSync(outputFilePath, urls, 'utf-8');
+          core.setOutput("readme-badges", urls);
+          console.log(urls);
+        } else {
+          console.log("No access key for badges was provide, skipping step.")
+        }
+
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch((error: any) => {
