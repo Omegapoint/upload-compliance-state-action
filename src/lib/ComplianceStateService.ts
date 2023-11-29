@@ -42,7 +42,7 @@ export class ComplianceStateService {
         },
       })
       .then(() => {
-        const urls: string | undefined | null = bodyBuilder.getUrls();
+        const urls: string | undefined = bodyBuilder.getUrls();
         if (urls) {
           const outputFilePath: string = path.join(__dirname, 'README_badges.txt'); // Output file in the same directory as the script
           fs.writeFileSync(outputFilePath, urls, 'utf-8');
