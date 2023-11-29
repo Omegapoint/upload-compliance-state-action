@@ -25,7 +25,11 @@ export class UrlBuilder {
     codeRepositoryName: string,
     subscriptionId: string,
     states: object
-  ): string {
+  ): string | undefined {
+
+    if (!process.env?.accessKeyBadgeService) {
+      return undefined;
+    }
 
     let urls: string = '';
     let encodedURL: string;

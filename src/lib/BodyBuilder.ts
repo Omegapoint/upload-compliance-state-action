@@ -4,7 +4,7 @@ import { UrlBodyBuilder } from './UrlBodyBuilder';
 import { UrlBody } from './UrlBody';
 import { RequestBody } from './RequestBody';
 
-let urls: string = '';
+let urls: string | undefined;
 
 export class BodyBuilder {
   createBody(teamName: string, codeRepositoryName: string, subscriptionId: string): RequestBody {
@@ -102,7 +102,7 @@ export class BodyBuilder {
     return requestBody;
   }
 
-  getUrls(): string {
+  getUrls(): string | undefined {
     return urls;
   }
 }
