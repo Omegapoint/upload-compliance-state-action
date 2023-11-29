@@ -43,7 +43,7 @@ export class ComplianceStateService {
       })
       .then(() => {
         const urls: string | undefined = bodyBuilder.getUrls();
-        if (urls !== undefined || urls !== null) {
+        if (urls) {
           const outputFilePath: string = path.join(__dirname, 'README_badges.txt'); // Output file in the same directory as the script
           fs.writeFileSync(outputFilePath, urls as string, 'utf-8');
           core.setOutput("readme-badges", urls);
