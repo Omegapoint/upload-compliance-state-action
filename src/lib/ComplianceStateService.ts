@@ -48,9 +48,10 @@ export class ComplianceStateService {
           fs.writeFileSync(outputFilePath, urls, 'utf-8');
           core.setOutput("readme-badges", urls);
           console.log(urls);
+        } else {
+          console.log("No access key for badges was provide, skipping step.")
         }
 
-        console.log("No access key for badges was provide, skipping step.")
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch((error: any) => {
