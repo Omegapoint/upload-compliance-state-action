@@ -51,7 +51,6 @@ export class ComplianceStateService {
         }
 
         console.log("No access key for badges was provide, skipping step.")
-        return;
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch((error: any) => {
