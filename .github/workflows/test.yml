@@ -72,8 +72,8 @@ jobs:
       - name: "Az CLI login"
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID_DEV }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          client-id: "46dd8f9f-612d-4311-a1e5-f5ee70621f38"
+          tenant-id: "3b68c6c1-04d4-4e86-875f-e48fa80b9529"
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
       - name: "Run Azure Compliance Controls"
         uses: ./azure-compliance-action
