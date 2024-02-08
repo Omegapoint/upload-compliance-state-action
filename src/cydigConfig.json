@@ -1,42 +1,46 @@
 {
   "teamName": "Test-GitHub",
-  "usingAzure": false,
+  "usingAzure": true,
   "threatModeling": {
-    "date": "not specified",
+    "date": "2023-09-07",
     "boardsTag": "TM"
   },
   "pentest": {
-    "date": "not specified",
+    "date": "2023-09-07",
     "boardsTag": "PT"
   },
   "github": {
+    "usingRepos": true
+  },
+  "azureDevOps": {
     "usingRepos": false,
     "repos": {
-      "username": "johanna.ahlskog"
+      "username": "firstname.lastname (usually)"
     },
-    "usingBoards": false,
+    "usingBoards": true,
     "boards": {
       "nameOfBoard": "not specified"
-    }
+    },
+    "organizationName": "CyDig",
+    "projectName": "CyDig"
   },
   "scaTool": {
-    "nameOfTool": "not specified",
+    "nameOfTool": "name-of-tool",
     "owaspDependencyCheck": {
-      "reportPath": "not specified",
+      "reportPath": "Reports/dependency-check-report.csv",
       "csvPath": "not specified"
     }
   },
   "sastTool": {
-    "nameOfTool": "not specified",
+    "nameOfTool": "name-of-tool",
     "semgrep": {
-      "reportPath": "not specified"
+      "reportPath": "semgrep-json.json"
     }
   },
   "codeQualityTool": {
-    "nameOfTool": "not specified"
+    "nameOfTool": "name-of-tool"
   },
   "reposToExclude": {
-    "nameOfRepos": "not specified"
+    "nameOfRepos": "not-specified"
   }
 }
-
