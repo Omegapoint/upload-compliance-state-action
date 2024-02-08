@@ -8,7 +8,7 @@ async function runUpdateComplianceStateTask(): Promise<void> {
   try {
     const codeRepositoryName: string = github.context.repo.repo;
     const subscriptionId: string = core.getInput('subscriptionId');
-    const cydigConfigPath: string = core.getInput('cydigConfigPath'); //Need both string??
+    const cydigConfigPath: string = core.getInput('cydigConfigPath');
     const cydigConfig: CyDigConfig = getContentOfFile(cydigConfigPath);
     const teamName: string = cydigConfig.teamName;
 
