@@ -21,7 +21,7 @@
       "nameOfTool": "OWASP"
   },
   "sastTool": {
-      "nameOfTool": "SEMGREP"
+      "nameOfTool": "CodeQL"
   },
   "codeQualityTool": {
       "nameOfTool": "not specified"
