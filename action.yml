@@ -12,7 +12,7 @@ inputs:
     description: 'SubscriptionId to use for the connections in the custom task.'
     required: true
     default: 'Not working'
-  
+
 outputs:
   readme-badges:
     description: 'README badges text file'

@@ -6,8 +6,8 @@ import * as path from 'path';
 import * as core from '@actions/core';
 
 export class ComplianceStateService {
-  private updateKey: string
-  private baseUrl: string
+  private updateKey: string;
+  private baseUrl: string;
   constructor() {
     if (!process.env?.updateKey) {
       throw new Error('Could not find environment variable updateKey');
@@ -26,11 +26,7 @@ export class ComplianceStateService {
     subscriptionId: string
   ): Promise<void> {
     const bodyBuilder: BodyBuilder = new BodyBuilder();
-    const responseBody: RequestBody = bodyBuilder.createBody(
-      teamName,
-      codeRepositoryName,
-      subscriptionId
-    );
+    const responseBody: RequestBody = bodyBuilder.createBody(teamName, codeRepositoryName, subscriptionId);
 
     const urlUpdate: string = `${this.baseUrl}/teams/${teamName}/repositories?code=${this.updateKey}`;
 
@@ -46,12 +42,11 @@ export class ComplianceStateService {
         if (urls) {
           const outputFilePath: string = path.join(__dirname, 'README_badges.txt'); // Output file in the same directory as the script
           fs.writeFileSync(outputFilePath, urls, 'utf-8');
-          core.setOutput("readme-badges", urls);
+          core.setOutput('readme-badges', urls);
           console.log(urls);
         } else {
-          console.log("No access key for badges was provide, skipping step.")
+          console.log('No access key for badges was provide, skipping step.');
         }
-
       })
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
