@@ -132,7 +132,11 @@ export class RequestBodyBuilder {
     }
   }
 
-  setPentestDate(pentestDate: string | undefined, ptNumberOfActiveTickets: string | undefined, ptNumberOfClosedTickets: string | undefined): this {
+  setPentestDate(
+    pentestDate: string | undefined,
+    ptNumberOfActiveTickets: string | undefined,
+    ptNumberOfClosedTickets: string | undefined
+  ): this {
     if (!pentestDate) {
       return this;
     } else {
