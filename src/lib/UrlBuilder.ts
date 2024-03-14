@@ -1,18 +1,16 @@
-
 export class UrlBuilder {
-
   private urlDashboard: string;
   private urlBadgeService: string;
   private source: string;
 
   constructor() {
-
     this.urlDashboard = process.env?.urlDashboard ? process.env?.urlDashboard : 'https://cydig.omegapoint.cloud/';
 
-    this.urlBadgeService = process.env?.urlBadgeService ? process.env?.urlBadgeService : 'https://func-cydig-badge-service-prod.azurewebsites.net/api';
+    this.urlBadgeService = process.env?.urlBadgeService
+      ? process.env?.urlBadgeService
+      : 'https://func-cydig-badge-service-prod.azurewebsites.net/api';
 
     this.source = 'GitHub';
-
   }
   public createUrl(
     teamName: string,
@@ -21,7 +19,6 @@ export class UrlBuilder {
     subscriptionId: string,
     states: object
   ): string | undefined {
-
     if (!process.env?.accessKeyBadgeService) {
       return undefined;
     }

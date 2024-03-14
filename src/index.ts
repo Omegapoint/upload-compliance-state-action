@@ -21,11 +21,7 @@ async function runUpdateComplianceStateTask(): Promise<void> {
     }
 
     const complianceStateService: ComplianceStateService = new ComplianceStateService();
-    await complianceStateService.createAndSendComplianceState(
-      teamName,
-      codeRepositoryName,
-      subscriptionId
-    );
+    await complianceStateService.createAndSendComplianceState(teamName, codeRepositoryName, subscriptionId);
   } catch (error) {
     // Fail the workflow run if an error occurs
     core.setFailed(error);

@@ -26,7 +26,7 @@ jobs:
         with:
           repository: Omegapoint/cydig-compliance-action
           path: compliance-action
-          
+
       - name: Setup node
         uses: actions/setup-node@v3
 
@@ -42,6 +42,11 @@ jobs:
         run: |
           cd azure-compliance-action
           npm ci
+
+      - name: Run lint and prettier
+        run: |
+          cd upload-action
+          npm run lint && npm run format:check
 
       - name: Run upload tests
         run: |
@@ -69,18 +74,18 @@ jobs:
           cd compliance-action
           npm run build
 
-      - name: "Az CLI login"
+      - name: 'Az CLI login'
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID_DEV }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
-      - name: "Run Azure Compliance Controls"
+      - name: 'Run Azure Compliance Controls'
         uses: ./azure-compliance-action
         with:
           subscription: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
           cydigConfigPath: ${{ github.workspace }}/azure-compliance-action/src/cydigConfig.json
-      - name: "Run Compliance Controls"
+      - name: 'Run Compliance Controls'
         uses: ./compliance-action
         with:
           cydigConfigPath: ${{ github.workspace }}/compliance-action/src/cydigConfig.json
@@ -95,7 +100,7 @@ jobs:
           echo "urlBadgeService=${{ vars.URL_BADGE_SERVICE_DEV }}" >> $GITHUB_ENV
           echo "accessKeyBadgeService=${{ vars.ACCESS_KEY_BADGES_DEV }}" >> $GITHUB_ENV
 
-      - name: "Run Upload Action"
+      - name: 'Run Upload Action'
         uses: ./upload-action
         with:
           cydigConfigPath: ${{ github.workspace }}/upload-action/src/cydigConfig.json

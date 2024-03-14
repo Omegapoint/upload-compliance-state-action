@@ -7,7 +7,7 @@ export class UrlBodyBuilder {
     this.url = new UrlBody();
   }
 
-  setThreatModelingDate(threatModelingDate: string | undefined ): this {
+  setThreatModelingDate(threatModelingDate: string | undefined): this {
     if (!threatModelingDate) {
       return this;
     } else {

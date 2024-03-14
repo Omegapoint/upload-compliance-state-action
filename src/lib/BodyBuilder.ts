@@ -41,7 +41,7 @@ export class BodyBuilder {
     const sastNumberOfSeverity2: string | undefined = process.env?.SASTnumberOfSeverity2;
     const sastNumberOfSeverity3: string | undefined = process.env?.SASTnumberOfSeverity3;
 
-    const tmNumberOfActiveTickets: string | undefined = process.env?.tmNumberOfActiveTickets
+    const tmNumberOfActiveTickets: string | undefined = process.env?.tmNumberOfActiveTickets;
     const tmNumberOfClosedTickets: string | undefined = process.env?.tmNumberOfClosedTickets;
 
     const ptNumberOfActiveTickets: string | undefined = process.env?.ptNumberOfActiveTickets;
