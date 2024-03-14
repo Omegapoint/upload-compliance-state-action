@@ -228,7 +228,7 @@ export class RequestBodyBuilder {
         this.requestBody.sastNumberOfSeverity3 = parseToNumberOrUndefined(sastNumberOfSeverity3);
         this.requestBody.sastNumberOfSeverity2 = parseToNumberOrUndefined(sastNumberOfSeverity2);
         this.requestBody.sastNumberOfSeverity1 = parseToNumberOrUndefined(sastNumberOfSeverity1);
-        this.requestBody.sastNumberOfSeverity4 = parseToNumberOrUndefined(sastNumberOfSeverity1);
+        this.requestBody.sastNumberOfSeverity4 = parseToNumberOrUndefined(sastNumberOfSeverity4);
       } else {
         this.requestBody.sastTool = sastTool; //one or many vulnerabilities are undefined, maybe print feedback in pipeline
       }
