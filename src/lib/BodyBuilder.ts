@@ -8,7 +8,7 @@ let urls: string | undefined;
 
 export class BodyBuilder {
   createBody(teamName: string, codeRepositoryName: string, subscriptionId: string): RequestBody {
-    const teamProjectName: string = "not-specified";
+    const teamProjectName: string = 'not-specified';
     const allowedLocationPolicy: string | undefined = process.env?.allowedLocationPolicy;
     const secureScore: string | undefined = process.env?.secureScore;
     const numberOfDeployedVMs: string | undefined = process.env?.numberOfDeployedVMs;
