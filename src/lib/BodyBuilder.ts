@@ -38,7 +38,7 @@ export class BodyBuilder {
     const cqNumberOfSeverity5: string | undefined = process.env?.CQnumberOfSeverity5;
 
     const sastNumberOfSeverity1: string | undefined = process.env?.SASTnumberOfSeverity1;
-    const sastNumberOfSeverity2: string | undefined = process.env.SASTnumberOfSeverity2;
+    const sastNumberOfSeverity2: string | undefined = process.env?.SASTnumberOfSeverity2;
     const sastNumberOfSeverity3: string | undefined = process.env?.SASTnumberOfSeverity3;
     const sastNumberOfSeverity4: string | undefined = process.env?.SASTnumberOfSeverity4;
 
@@ -48,9 +48,9 @@ export class BodyBuilder {
     const ptNumberOfActiveTickets: string | undefined = process.env?.ptNumberOfActiveTickets;
     const ptNumberOfClosedTickets: string | undefined = process.env?.ptNumberOfClosedTickets;
 
-    const numUserInProdSeverity1: string | undefined = process.env.numUserInProdSeverity1;
-    const numUserInProdSeverity2: string | undefined = process.env.numUserInProdSeverity2;
-    const numUserInProdSeverity3: string | undefined = process.env.numUserInProdSeverity3;
+    const numUserInProdSeverity1: string | undefined = process.env?.numUserInProdSeverity1;
+    const numUserInProdSeverity2: string | undefined = process.env?.numUserInProdSeverity2;
+    const numUserInProdSeverity3: string | undefined = process.env?.numUserInProdSeverity3;
 
     //For printing urls in the pipeline
     const urlBody: UrlBody = new UrlBodyBuilder()

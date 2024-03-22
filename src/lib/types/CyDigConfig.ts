@@ -9,27 +9,19 @@ export type CyDigConfig = {
     date: string;
     boardsTag: string;
   };
-  github: {
-    usingRepos: boolean;
-    repos: {
-      username: string;
-    };
+  azureDevOps: {
     usingBoards: boolean;
     boards: {
+      organizationName: string;
+      projectName: string;
       nameOfBoard: string;
     };
   };
   scaTool: {
     nameOfTool: string;
-    owaspDependencyCheck: {
-      reportPath: string;
-    };
   };
   sastTool: {
     nameOfTool: string;
-    semgrep: {
-      reportPath: string;
-    };
   };
   codeQualityTool: {
     nameOfTool: string;
