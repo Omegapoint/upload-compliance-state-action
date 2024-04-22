@@ -110,6 +110,19 @@ export class UrlBodyBuilder {
     }
   }
 
+  setNumberOfIdentitesInCode(
+    numberOfCodeAdmins: string | undefined,
+    numberOfCodeWriters: string | undefined,
+    numberOfCodeReaders: string | undefined
+  ): this {
+    if (!numberOfCodeAdmins || !numberOfCodeWriters || !numberOfCodeReaders) {
+      return this;
+    } else {
+      this.url.usersInProduction = 'numberOfidentitiesInCode';
+      return this;
+    }
+  }
+
   build(): UrlBody {
     return this.url;
   }

@@ -236,6 +236,19 @@ export class RequestBodyBuilder {
     }
   }
 
+  setNumberOfIdentitiesInCode(
+    numberOfCodeAdmins: string | undefined,
+    numberOfCodeWriters: string | undefined,
+    numberOfCodeReaders: string | undefined
+  ): this {
+    if (numberOfCodeAdmins && numberOfCodeWriters && numberOfCodeReaders) {
+      this.requestBody.numberOfCodeAdmins = parseToNumberOrUndefined(numberOfCodeAdmins);
+      this.requestBody.numberOfCodeWriters = parseToNumberOrUndefined(numberOfCodeWriters);
+      this.requestBody.numberOfCodeReaders = parseToNumberOrUndefined(numberOfCodeReaders);
+    }
+    return this;
+  }
+
   build(): RequestBody {
     return this.requestBody;
   }

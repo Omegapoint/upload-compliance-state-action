@@ -40,4 +40,7 @@ export class RequestBody {
   numUserInProdSeverity1?: number;
   numUserInProdSeverity2?: number;
   numUserInProdSeverity3?: number;
+  numberOfCodeAdmins?: number;
+  numberOfCodeWriters?: number;
+  numberOfCodeReaders?: number;
 }
