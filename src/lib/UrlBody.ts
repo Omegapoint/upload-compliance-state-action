@@ -10,5 +10,5 @@ export class UrlBody {
   numberOfExposedSecrets: string;
   codeQualityTool: string;
   usersInProduction: string;
-  numberOfidentitiesInCode: string;
+  numberOfEntitiesInCode: string;
 }

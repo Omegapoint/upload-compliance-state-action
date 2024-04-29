@@ -67,7 +67,7 @@ export class BodyBuilder {
       .setSecureScore(secureScore)
       .setAllowedLocationPolicy(allowedLocationPolicy)
       .setNumberOfHumansInSubscription(numUserInProdSeverity1, numUserInProdSeverity2, numUserInProdSeverity3)
-      .setNumberOfIdentitesInCode(numberOfCodeAdmins, numberOfCodeWriters, numberOfCodeReaders)
+      .setNumberOfEntitiesInCode(numberOfCodeAdmins, numberOfCodeWriters, numberOfCodeReaders)
       .setNumberOfDeployedVMs(numberOfDeployedVMs)
       .setPentestDate(pentestDate)
       .build();
@@ -93,7 +93,7 @@ export class BodyBuilder {
       .setSecureScore(secureScore)
       .setAllowedLocationPolicy(allowedLocationPolicy, compliantResources, nonCompliantResources)
       .setNumberOfHumansInSubscription(numUserInProdSeverity1, numUserInProdSeverity2, numUserInProdSeverity3)
-      .setNumberOfIdentitiesInCode(numberOfCodeAdmins, numberOfCodeWriters, numberOfCodeReaders)
+      .setNumberOfEntitiesInCode(numberOfCodeAdmins, numberOfCodeWriters, numberOfCodeReaders)
       .setPentestDate(pentestDate, ptNumberOfActiveTickets, ptNumberOfClosedTickets)
       .setNumberOfDeployedVMs(numberOfDeployedVMs)
       .setNumberOfExposedSecrets(numberOfExposedSecrets)
