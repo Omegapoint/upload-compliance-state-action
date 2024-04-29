@@ -118,7 +118,7 @@ export class UrlBodyBuilder {
     if (!numberOfCodeAdmins || !numberOfCodeWriters || !numberOfCodeReaders) {
       return this;
     } else {
-      this.url.usersInProduction = 'numberOfidentitiesInCode';
+      this.url.numberOfidentitiesInCode = 'numberOfidentitiesInCode';
       return this;
     }
   }
