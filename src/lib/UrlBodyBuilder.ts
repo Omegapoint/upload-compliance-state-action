@@ -110,7 +110,7 @@ export class UrlBodyBuilder {
     }
   }
 
-  setNumberOfEntitiesInCode(
+  setEntitiesInCode(
     numberOfCodeAdmins: string | undefined,
     numberOfCodeWriters: string | undefined,
     numberOfCodeReaders: string | undefined
@@ -118,7 +118,7 @@ export class UrlBodyBuilder {
     if (!numberOfCodeAdmins || !numberOfCodeWriters || !numberOfCodeReaders) {
       return this;
     } else {
-      this.url.numberOfEntitiesInCode = 'numberOfEntitiesInCode';
+      this.url.entitiesInCode = 'entitiesInCode';
       return this;
     }
   }

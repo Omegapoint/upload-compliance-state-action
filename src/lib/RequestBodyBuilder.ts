@@ -236,7 +236,7 @@ export class RequestBodyBuilder {
     }
   }
 
-  setNumberOfEntitiesInCode(
+  setEntitiesInCode(
     numberOfCodeAdmins: string | undefined,
     numberOfCodeWriters: string | undefined,
     numberOfCodeReaders: string | undefined
