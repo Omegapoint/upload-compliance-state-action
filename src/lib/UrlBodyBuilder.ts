@@ -110,6 +110,19 @@ export class UrlBodyBuilder {
     }
   }
 
+  setEntitiesInCode(
+    numberOfCodeAdmins: string | undefined,
+    numberOfCodeWriters: string | undefined,
+    numberOfCodeReaders: string | undefined
+  ): this {
+    if (!numberOfCodeAdmins || !numberOfCodeWriters || !numberOfCodeReaders) {
+      return this;
+    } else {
+      this.url.entitiesInCode = 'entitiesInCode';
+      return this;
+    }
+  }
+
   build(): UrlBody {
     return this.url;
   }

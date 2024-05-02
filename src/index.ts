@@ -19,7 +19,6 @@ async function runUpdateComplianceStateTask(): Promise<void> {
         'Invalid team name. (Placeholder values are not allowed). Please update the cydigConfig with a valid team name.'
       );
     }
-
     const complianceStateService: ComplianceStateService = new ComplianceStateService();
     await complianceStateService.createAndSendComplianceState(teamName, codeRepositoryName, subscriptionId);
   } catch (error) {

@@ -52,6 +52,10 @@ export class BodyBuilder {
     const numUserInProdSeverity2: string | undefined = process.env?.numUserInProdSeverity2;
     const numUserInProdSeverity3: string | undefined = process.env?.numUserInProdSeverity3;
 
+    const numberOfCodeAdmins: string | undefined = process.env?.numberOfCodeAdmins;
+    const numberOfCodeWriters: string | undefined = process.env?.numberOfCodeWriters;
+    const numberOfCodeReaders: string | undefined = process.env?.numberOfCodeReaders;
+
     //For printing urls in the pipeline
     const urlBody: UrlBody = new UrlBodyBuilder()
       .setThreatModelingDate(threatModelingDate)
@@ -63,6 +67,7 @@ export class BodyBuilder {
       .setSecureScore(secureScore)
       .setAllowedLocationPolicy(allowedLocationPolicy)
       .setNumberOfHumansInSubscription(numUserInProdSeverity1, numUserInProdSeverity2, numUserInProdSeverity3)
+      .setEntitiesInCode(numberOfCodeAdmins, numberOfCodeWriters, numberOfCodeReaders)
       .setNumberOfDeployedVMs(numberOfDeployedVMs)
       .setPentestDate(pentestDate)
       .build();
@@ -88,6 +93,7 @@ export class BodyBuilder {
       .setSecureScore(secureScore)
       .setAllowedLocationPolicy(allowedLocationPolicy, compliantResources, nonCompliantResources)
       .setNumberOfHumansInSubscription(numUserInProdSeverity1, numUserInProdSeverity2, numUserInProdSeverity3)
+      .setEntitiesInCode(numberOfCodeAdmins, numberOfCodeWriters, numberOfCodeReaders)
       .setPentestDate(pentestDate, ptNumberOfActiveTickets, ptNumberOfClosedTickets)
       .setNumberOfDeployedVMs(numberOfDeployedVMs)
       .setNumberOfExposedSecrets(numberOfExposedSecrets)
