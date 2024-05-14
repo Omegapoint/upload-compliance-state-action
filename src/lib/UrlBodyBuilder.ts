@@ -101,6 +101,15 @@ export class UrlBodyBuilder {
     }
   }
 
+  setSecretScanningTool(secretScanningTool: string | undefined): this {
+    if (!secretScanningTool) {
+      return this;
+    } else {
+      this.url.secretScanningTool = secretScanningTool;
+      return this;
+    }
+  }
+
   setCodeQualityTool(codeQualityTool: string | undefined): this {
     if (!codeQualityTool) {
       return this;

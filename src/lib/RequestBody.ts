@@ -30,6 +30,7 @@ export class RequestBody {
   ptNumberOfActiveTickets?: number;
   ptNumberOfClosedTickets?: number;
   numberOfDeployedVMs?: number;
+  secretScanningTool?: string;
   numberOfExposedSecrets?: number;
   codeQualityTool?: string;
   cqNumberOfSeverity5?: number;

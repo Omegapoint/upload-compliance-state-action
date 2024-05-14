@@ -169,7 +169,13 @@ export class RequestBodyBuilder {
     return this;
   }
 
-  setNumberOfExposedSecrets(numberOfExposedSecrets: string | undefined): this {
+  setSecretScanningTool(
+    secretScanningTool: string | undefined,
+    numberOfExposedSecrets: string | undefined
+  ): this {
+    if (secretScanningTool) {
+      this.requestBody.secretScanningTool = secretScanningTool;
+    }
     if (numberOfExposedSecrets) {
       this.requestBody.numberOfExposedSecrets = parseToNumberOrUndefined(numberOfExposedSecrets);
     }
