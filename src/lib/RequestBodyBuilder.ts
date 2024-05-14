@@ -169,10 +169,7 @@ export class RequestBodyBuilder {
     return this;
   }
 
-  setSecretScanningTool(
-    secretScanningTool: string | undefined,
-    numberOfExposedSecrets: string | undefined
-  ): this {
+  setSecretScanningTool(secretScanningTool: string | undefined, numberOfExposedSecrets: string | undefined): this {
     if (secretScanningTool) {
       this.requestBody.secretScanningTool = secretScanningTool;
     }
