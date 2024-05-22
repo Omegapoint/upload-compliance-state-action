@@ -8,7 +8,6 @@ export class UrlBody {
   pentestDate: string;
   numberOfDeployedVMs: string;
   secretScanningTool: string;
-  numberOfExposedSecrets: string;
   codeQualityTool: string;
   usersInProduction: string;
   entitiesInCode: string;

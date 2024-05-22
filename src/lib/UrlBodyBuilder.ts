@@ -92,15 +92,6 @@ export class UrlBodyBuilder {
     }
   }
 
-  setNumberOfExposedSecrets(numberOfExposedSecrets: string | undefined): this {
-    if (!numberOfExposedSecrets) {
-      return this;
-    } else {
-      this.url.numberOfExposedSecrets = numberOfExposedSecrets;
-      return this;
-    }
-  }
-
   setSecretScanningTool(secretScanningTool: string | undefined): this {
     if (!secretScanningTool) {
       return this;
@@ -127,7 +118,7 @@ export class UrlBodyBuilder {
     if (!numberOfCodeAdmins || !numberOfCodeWriters || !numberOfCodeReaders) {
       return this;
     } else {
-      this.url.entitiesInCode = 'entitiesInCode';
+      this.url.entitiesInCode = 'userAccessToCode';
       return this;
     }
   }
