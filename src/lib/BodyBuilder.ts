@@ -18,6 +18,7 @@ export class BodyBuilder {
     const sastTool: string | undefined = process.env?.sastTool;
     const pentestDate: string | undefined = process.env?.pentestDate;
     const codeQualityTool: string | undefined = process.env?.codeQualityTool;
+    const secretScanningTool: string | undefined = process.env?.secretScanningTool;
     const numberOfExposedSecrets: string | undefined = process.env?.numberOfExposedSecrets;
     const numberOfReviewers: string | undefined = process.env?.numberOfReviewers;
     const branchPolicyUpdateDate: string | undefined = process.env?.branchPolicyUpdateDate;
@@ -60,7 +61,7 @@ export class BodyBuilder {
     const urlBody: UrlBody = new UrlBodyBuilder()
       .setThreatModelingDate(threatModelingDate)
       .setNumberOfReviewers(numberOfReviewers)
-      .setNumberOfExposedSecrets(numberOfExposedSecrets)
+      .setSecretScanningTool(secretScanningTool)
       .setCodeQualityTool(codeQualityTool)
       .setScaTool(scaTool)
       .setSastTool(sastTool)
@@ -96,7 +97,7 @@ export class BodyBuilder {
       .setEntitiesInCode(numberOfCodeAdmins, numberOfCodeWriters, numberOfCodeReaders)
       .setPentestDate(pentestDate, ptNumberOfActiveTickets, ptNumberOfClosedTickets)
       .setNumberOfDeployedVMs(numberOfDeployedVMs)
-      .setNumberOfExposedSecrets(numberOfExposedSecrets)
+      .setSecretScanningTool(secretScanningTool, numberOfExposedSecrets)
       .setCodeQualityTool(
         codeQualityTool,
         cqNumberOfSeverity1,

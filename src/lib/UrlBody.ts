@@ -7,7 +7,7 @@ export class UrlBody {
   allowedLocationPolicy: string;
   pentestDate: string;
   numberOfDeployedVMs: string;
-  numberOfExposedSecrets: string;
+  secretScanningTool: string;
   codeQualityTool: string;
   usersInProduction: string;
   entitiesInCode: string;
