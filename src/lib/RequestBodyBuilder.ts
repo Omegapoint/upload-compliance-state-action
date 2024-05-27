@@ -239,7 +239,7 @@ export class RequestBodyBuilder {
     }
   }
 
-  setEntitiesInCode(
+  setUserAccessToCode(
     numberOfCodeAdmins: string | undefined,
     numberOfCodeWriters: string | undefined,
     numberOfCodeReaders: string | undefined
