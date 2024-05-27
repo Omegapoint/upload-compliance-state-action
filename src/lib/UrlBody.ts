@@ -10,5 +10,5 @@ export class UrlBody {
   secretScanningTool: string;
   codeQualityTool: string;
   usersInProduction: string;
-  entitiesInCode: string;
+  userAccessToCode: string;
 }
