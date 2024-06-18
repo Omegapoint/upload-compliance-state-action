@@ -14,9 +14,7 @@
       "error",
       {
         "arrayDestructuring": true,
-        "arrowCallSignature": true,
         "arrowParameter": true,
-        "callSignature": true,
         "memberVariableDeclaration": true,
         "parameter": true,
         "propertyDeclaration": true,
