@@ -82,7 +82,7 @@ export class UrlBodyBuilder {
   setNumberOfHumansInSubscription(
     numUserInProdSeverity1: string | undefined,
     numUserInProdSeverity2: string | undefined,
-    numUserInProdSeverity3: string | undefined
+    numUserInProdSeverity3: string | undefined,
   ): this {
     if (!numUserInProdSeverity1 || !numUserInProdSeverity2 || !numUserInProdSeverity3) {
       return this;
@@ -113,7 +113,7 @@ export class UrlBodyBuilder {
   setUserAccessToCode(
     numberOfCodeAdmins: string | undefined,
     numberOfCodeWriters: string | undefined,
-    numberOfCodeReaders: string | undefined
+    numberOfCodeReaders: string | undefined,
   ): this {
     if (!numberOfCodeAdmins || !numberOfCodeWriters || !numberOfCodeReaders) {
       return this;

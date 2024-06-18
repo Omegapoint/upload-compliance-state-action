@@ -23,7 +23,7 @@ export class ComplianceStateService {
   public async createAndSendComplianceState(
     teamName: string,
     codeRepositoryName: string,
-    subscriptionId: string
+    subscriptionId: string,
   ): Promise<void> {
     const bodyBuilder: BodyBuilder = new BodyBuilder();
     const responseBody: RequestBody = bodyBuilder.createBody(teamName, codeRepositoryName, subscriptionId);

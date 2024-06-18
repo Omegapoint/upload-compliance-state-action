@@ -47,7 +47,7 @@ export class RequestBodyBuilder {
   setThreatModelingDate(
     threatModelingDate: string | undefined,
     tmNumberOfActiveTickets: string | undefined,
-    tmNumberOfClosedTickets: string | undefined
+    tmNumberOfClosedTickets: string | undefined,
   ): this {
     if (!threatModelingDate) {
       return this;
@@ -64,7 +64,7 @@ export class RequestBodyBuilder {
   setNumberOfReviewers(
     numberOfReviewers: string | undefined,
     branchPolicyUpdateDate: string | undefined,
-    branchPolicyUpdateEmail: string | undefined
+    branchPolicyUpdateEmail: string | undefined,
   ): this {
     if (!numberOfReviewers) {
       return this;
@@ -83,7 +83,7 @@ export class RequestBodyBuilder {
     scaNumberOfSeverity1: string | undefined,
     scaNumberOfSeverity2: string | undefined,
     scaNumberOfSeverity3: string | undefined,
-    scaNumberOfSeverity4: string | undefined
+    scaNumberOfSeverity4: string | undefined,
   ): this {
     if (!scaTool) {
       return this;
@@ -116,7 +116,7 @@ export class RequestBodyBuilder {
   setAllowedLocationPolicy(
     allowedLocationPolicy: string | undefined,
     compliantResources: string | undefined,
-    nonCompliantResources: string | undefined
+    nonCompliantResources: string | undefined,
   ): this {
     if (!allowedLocationPolicy) {
       return this;
@@ -135,7 +135,7 @@ export class RequestBodyBuilder {
   setPentestDate(
     pentestDate: string | undefined,
     ptNumberOfActiveTickets: string | undefined,
-    ptNumberOfClosedTickets: string | undefined
+    ptNumberOfClosedTickets: string | undefined,
   ): this {
     if (!pentestDate) {
       return this;
@@ -159,7 +159,7 @@ export class RequestBodyBuilder {
   setNumberOfHumansInSubscription(
     numUserInProdSeverity1: string | undefined,
     numUserInProdSeverity2: string | undefined,
-    numUserInProdSeverity3: string | undefined
+    numUserInProdSeverity3: string | undefined,
   ): this {
     if (numUserInProdSeverity1 && numUserInProdSeverity2 && numUserInProdSeverity3) {
       this.requestBody.numUserInProdSeverity1 = parseToNumberOrUndefined(numUserInProdSeverity1);
@@ -185,7 +185,7 @@ export class RequestBodyBuilder {
     cqNumberOfSeverity2: string | undefined,
     cqNumberOfSeverity3: string | undefined,
     cqNumberOfSeverity4: string | undefined,
-    cqNumberOfSeverity5: string | undefined
+    cqNumberOfSeverity5: string | undefined,
   ): this {
     if (!codeQualityTool) {
       return this;
@@ -218,7 +218,7 @@ export class RequestBodyBuilder {
     sastNumberOfSeverity1: string | undefined,
     sastNumberOfSeverity2: string | undefined,
     sastNumberOfSeverity3: string | undefined,
-    sastNumberOfSeverity4: string | undefined
+    sastNumberOfSeverity4: string | undefined,
   ): this {
     if (!sastTool) {
       return this;
@@ -242,7 +242,7 @@ export class RequestBodyBuilder {
   setUserAccessToCode(
     numberOfCodeAdmins: string | undefined,
     numberOfCodeWriters: string | undefined,
-    numberOfCodeReaders: string | undefined
+    numberOfCodeReaders: string | undefined,
   ): this {
     if (numberOfCodeAdmins && numberOfCodeWriters && numberOfCodeReaders) {
       this.requestBody.numberOfCodeAdmins = parseToNumberOrUndefined(numberOfCodeAdmins);
