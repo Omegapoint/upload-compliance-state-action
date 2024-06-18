@@ -17,7 +17,7 @@ export class UrlBuilder {
     teamProjectName: string,
     codeRepositoryName: string,
     subscriptionId: string,
-    states: object
+    states: object,
   ): string | undefined {
     if (!process.env?.accessKeyBadgeService) {
       return undefined;
@@ -38,7 +38,7 @@ export class UrlBuilder {
 
     //timestamp
     encodedURL = encodeURIComponent(
-      `${this.urlBadgeService}/teams/${teamName}/sources/${this.source}/projects/${teamProjectName}/repositories/${codeRepositoryName}/controls/timestamp?code=${accessKeyBadgeService}`
+      `${this.urlBadgeService}/teams/${teamName}/sources/${this.source}/projects/${teamProjectName}/repositories/${codeRepositoryName}/controls/timestamp?code=${accessKeyBadgeService}`,
     );
     singleBadgeURL = '![' + 'Timestamp' + '](https://img.shields.io/endpoint?url=' + encodedURL + ')';
     urls = urls + singleBadgeURL + '<br/>' + '<br/>' + '\n';
@@ -46,7 +46,7 @@ export class UrlBuilder {
     for (const state of Object.keys(states)) {
       redirectLink = '';
       encodedURL = encodeURIComponent(
-        `${this.urlBadgeService}/teams/${teamName}/sources/${this.source}/projects/${teamProjectName}/repositories/${codeRepositoryName}/controls/${state}?code=${accessKeyBadgeService}`
+        `${this.urlBadgeService}/teams/${teamName}/sources/${this.source}/projects/${teamProjectName}/repositories/${codeRepositoryName}/controls/${state}?code=${accessKeyBadgeService}`,
       );
       singleBadgeURL = '[![' + state + '](https://img.shields.io/endpoint?url=' + encodedURL + ')]';
 

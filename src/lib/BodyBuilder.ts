@@ -79,7 +79,7 @@ export class BodyBuilder {
       teamProjectName,
       codeRepositoryName,
       subscriptionId,
-      urlBody
+      urlBody,
     );
 
     const requestBody: RequestBody = new RequestBodyBuilder()
@@ -104,7 +104,7 @@ export class BodyBuilder {
         cqNumberOfSeverity2,
         cqNumberOfSeverity3,
         cqNumberOfSeverity4,
-        cqNumberOfSeverity5
+        cqNumberOfSeverity5,
       )
       .build();
     return requestBody;
