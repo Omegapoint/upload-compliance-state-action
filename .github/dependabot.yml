@@ -7,6 +7,7 @@ version: 2
 updates:
   - package-ecosystem: 'npm' # See documentation for possible values
     directory: '/' # Location of package manifests
+    labels: [ ] # Disables all labels, including the default labels
     schedule:
       interval: 'daily'
 
@@ -14,5 +15,6 @@ updates:
   - package-ecosystem: 'github-actions'
     # Workflow files stored in the default location of `.github/workflows`. (You don't need to specify `/.github/workflows` for `directory`. You can use `directory: "/"`.)
     directory: '/'
+    labels: [ ] # Disables all labels, including the default labels
     schedule:
       interval: 'daily'
