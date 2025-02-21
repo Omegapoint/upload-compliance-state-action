@@ -3,20 +3,20 @@ description: 'Cydig upload action'
 author: 'Omgeapoint'
 
 inputs:
-  cydigConfigPath:
-    description: 'The path to the json-file containing configuration for CyDig'
-    required: true
-    default: 'Not working'
+    cydigConfigPath:
+        description: 'The path to the json-file containing configuration for CyDig'
+        required: true
+        default: 'Not working'
 
-  subscriptionId:
-    description: 'SubscriptionId to use for the connections in the custom task.'
-    required: true
-    default: 'Not working'
+    subscriptionId:
+        description: 'SubscriptionId to use for the connections in the custom task.'
+        required: true
+        default: 'Not working'
 
 outputs:
-  readme-badges:
-    description: 'README badges text file'
+    readme-badges:
+        description: 'README badges text file'
 
 runs:
-  using: node16
-  main: dist/index.js
+    using: node16
+    main: dist/index.js
