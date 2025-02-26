@@ -252,22 +252,25 @@ export class RequestBodyBuilder {
         return this;
     }
 
-    setCommunicationTool(communicationTool: string | undefined, numberOfCommunicationMembers: string | undefined): this {
+    setCommunicationTool(
+        communicationTool: string | undefined,
+        numberOfCommunicationMembers: string | undefined,
+    ): this {
         if (communicationTool === undefined) {
-          return this;
+            return this;
         } else if (communicationTool === 'not specified') {
-          this.requestBody.communicationTool = communicationTool;
-          return this;
+            this.requestBody.communicationTool = communicationTool;
+            return this;
         } else {
-          if(numberOfCommunicationMembers !== undefined) {
-            this.requestBody.communicationTool = communicationTool;
-            this.requestBody.numberOfCommunicationMembers = parseToNumberOrUndefined(numberOfCommunicationMembers);
-          } else {
-            this.requestBody.communicationTool = communicationTool;
-          }
-          return this;
+            if (numberOfCommunicationMembers !== undefined) {
+                this.requestBody.communicationTool = communicationTool;
+                this.requestBody.numberOfCommunicationMembers = parseToNumberOrUndefined(numberOfCommunicationMembers);
+            } else {
+                this.requestBody.communicationTool = communicationTool;
+            }
+            return this;
         }
-      }
+    }
 
     build(): RequestBody {
         return this.requestBody;
