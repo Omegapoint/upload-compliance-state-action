@@ -23,6 +23,7 @@ export class BodyBuilder {
         const numberOfReviewers: string | undefined = process.env?.numberOfReviewers;
         const branchPolicyUpdateDate: string | undefined = process.env?.branchPolicyUpdateDate;
         const branchPolicyUpdateEmail: string | undefined = process.env?.branchPolicyUpdateEmail;
+        const communicationTool: string | undefined = process.env?.communicationTool;
 
         const compliantResources: string | undefined = process.env?.compliantResources;
         const nonCompliantResources: string | undefined = process.env?.nonCompliantResources;
@@ -57,9 +58,12 @@ export class BodyBuilder {
         const numberOfCodeWriters: string | undefined = process.env?.numberOfCodeWriters;
         const numberOfCodeReaders: string | undefined = process.env?.numberOfCodeReaders;
 
+        const numberOfCommunicationMembers: string | undefined = process.env?.numberOfCommunicationMembers;
+
         //For printing urls in the pipeline
         const urlBody: UrlBody = new UrlBodyBuilder()
             .setThreatModelingDate(threatModelingDate)
+            //.setUserAccessToCode(numberOfCodeAdmins, numberOfCodeWriters, numberOfCodeReaders) //TODO: Add when user access to code is implemented for all teams
             .setNumberOfReviewers(numberOfReviewers)
             .setSecretScanningTool(secretScanningTool)
             .setCodeQualityTool(codeQualityTool)
@@ -112,6 +116,7 @@ export class BodyBuilder {
                 cqNumberOfSeverity4,
                 cqNumberOfSeverity5,
             )
+            .setCommunicationTool(communicationTool, numberOfCommunicationMembers)
             .build();
         return requestBody;
     }

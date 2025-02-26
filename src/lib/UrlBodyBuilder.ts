@@ -123,6 +123,15 @@ export class UrlBodyBuilder {
         }
     }
 
+    setCommunicationTool(communicationTool: string | undefined): this {
+        if (!communicationTool) {
+            return this;
+        } else {
+            this.url.communicationTool = communicationTool;
+            return this;
+        }
+    }
+
     build(): UrlBody {
         return this.url;
     }

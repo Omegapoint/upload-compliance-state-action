@@ -11,4 +11,5 @@ export class UrlBody {
     codeQualityTool: string;
     usersInProduction: string;
     userAccessToCode: string;
+    communicationTool: string;
 }

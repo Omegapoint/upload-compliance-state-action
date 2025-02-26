@@ -44,4 +44,6 @@ export class RequestBody {
     numberOfCodeAdmins?: number;
     numberOfCodeWriters?: number;
     numberOfCodeReaders?: number;
+    communicationTool?: string;
+    numberOfCommunicationMembers?: number;
 }
